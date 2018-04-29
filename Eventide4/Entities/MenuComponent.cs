@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +11,7 @@ namespace Eventide4
 {
     public class MenuComponent : Component, IUpdateComponent
     {
+        /*
         public MenuComponent()
         {
             if(MenuGroup.activeMenuGroup != null)
@@ -15,10 +19,20 @@ namespace Eventide4
                 MenuGroup.activeMenuGroup.menuList.Add(this);
             }
         }
+        */
+        public MenuComponent(MenuGroup menuGroup)
+        {
+            menuGroup.menuList.Add(this);
+        }
 
         public void Update()
         {
-
+            Rectangle boundary = host.renderComponent.Request(RenderProperty.Boundary);
+            if (ContentHandler.mouseX >= boundary.X && ContentHandler.mouseX < boundary.X + boundary.Width
+                && ContentHandler.mouseY >= boundary.Y && ContentHandler.mouseY < boundary.Y + boundary.Height)
+            {
+                //((TextComponent)(host.renderComponent).)
+            }
         }
     }
 
@@ -29,15 +43,21 @@ namespace Eventide4
         public List<MenuComponent> menuList;
         public int currentItem;
 
-        public MenuGroup(int _currentItem = 0)
+        public MenuGroup()
         {
             menuList = new List<MenuComponent>();
-            currentItem = _currentItem;
+            //currentItem = _currentItem;
         }
-
+        /*
         public void Start()
         {
             activeMenuGroup = this;
         }
+
+        public void End()
+        {
+            activeMenuGroup = null;
+        }
+        */
     }
 }

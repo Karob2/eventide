@@ -20,6 +20,11 @@ namespace Eventide4
             position = pos;
         }
 
+        public dynamic Request(RenderProperty property)
+        {
+            return null;
+        }
+
         public void Render()
         {
             //ContentHandler.spriteBatch.Draw(texture, position, Color.White);

@@ -8,11 +8,13 @@ namespace Eventide4
 {
     public class Component
     {
-        public Entity host;
-
+        private Entity _host;
+        public Entity host { get { return _host; } set { _host = value; } }
+        /*
         public void setHost(Entity _host)
         {
             host = _host;
         }
+        */
     }
 }

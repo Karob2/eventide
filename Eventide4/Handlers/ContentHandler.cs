@@ -21,6 +21,7 @@ namespace Eventide4
         public static GraphicsDeviceManager graphicsManager;
         public static SpriteBatch spriteBatch;
         public static Dictionary<string, Texture2D> textureList;
+        public static int mouseX, mouseY;
 
         public static void Initialize(Game parentGame, GraphicsDeviceManager graphics)
         {
@@ -69,6 +70,14 @@ namespace Eventide4
                 textureList.Add(path, texture);
             }
             return texture;
+        }
+
+        public static void UpdateMouse()
+        {
+            MouseState current_mouse = Mouse.GetState();
+
+            mouseX = current_mouse.X;
+            mouseY = current_mouse.Y;
         }
     }
 }

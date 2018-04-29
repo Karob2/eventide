@@ -118,6 +118,7 @@ namespace Eventide4
             ballPosition.X = Math.Min(Math.Max(ballTexture.Width / 2, ballPosition.X), graphics.PreferredBackBufferWidth - ballTexture.Width / 2);
             ballPosition.Y = Math.Min(Math.Max(ballTexture.Height / 2, ballPosition.Y), graphics.PreferredBackBufferHeight - ballTexture.Height / 2);
             */
+            ContentHandler.UpdateMouse();
 
             Scene.UpdateScene();
 
