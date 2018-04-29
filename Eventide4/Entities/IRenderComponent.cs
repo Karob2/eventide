@@ -15,12 +15,22 @@ namespace Eventide4
         Boundary
     }
     */
-
+    /*
+    public enum HighlightMode
+    {
+        None,
+        Light,
+        Dark,
+        Gray,
+        Border
+    }
+    */
     public interface IRenderComponent
     {
         //void setHost(Entity _host);
         Entity host { get; set; }
         Rectangle Boundary();
+        //void Highlight(HighlightMode mode);
         //dynamic Request(RenderProperty property);
         void Render();
     }
