@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public interface IUpdateComponent
+    public class UpdateComponent : Component
     {
-        //void setHost(Entity _host);
-        Entity host { get; set; }
-        void Update();
+        public virtual void Update()
+        {
+
+        }
     }
 }

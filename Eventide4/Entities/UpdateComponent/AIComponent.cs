@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class AIComponent : Component, IUpdateComponent
+    public class AIComponent : UpdateComponent
     {
-        public void Update()
+        public override void Update()
         {
 
         }

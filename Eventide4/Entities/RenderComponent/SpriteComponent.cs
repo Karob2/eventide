@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class SpriteComponent : Component, IRenderComponent
+    public class SpriteComponent : RenderComponent
     {
-        public Rectangle Boundary()
+        public override Rectangle Boundary()
         {
             return new Rectangle();
         }
 
-        public void Render()
+        public override void Render()
         {
 
         }

@@ -47,6 +47,7 @@ namespace Eventide4
                 new TextComponent("Exit", new Vector2(100, 400), menuTextColor),
                 new MenuComponent(menu)
                 ));
+
             /*
             menu.Start();
             entityList.Add(Entity.Connect(

@@ -10,12 +10,6 @@ using System.Threading.Tasks;
 namespace Eventide4
 {
     /*
-    public enum RenderProperty
-    {
-        Boundary
-    }
-    */
-    /*
     public enum HighlightMode
     {
         None,
@@ -25,13 +19,16 @@ namespace Eventide4
         Border
     }
     */
-    public interface IRenderComponent
+    public class RenderComponent : Component
     {
-        //void setHost(Entity _host);
-        Entity host { get; set; }
-        Rectangle Boundary();
+        public virtual Rectangle Boundary()
+        {
+            return new Rectangle();
+        }
         //void Highlight(HighlightMode mode);
-        //dynamic Request(RenderProperty property);
-        void Render();
+        public virtual void Render()
+        {
+
+        }
     }
 }

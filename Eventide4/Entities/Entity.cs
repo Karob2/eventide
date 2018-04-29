@@ -8,8 +8,8 @@ namespace Eventide4
 {
     public class Entity
     {
-        public IRenderComponent renderComponent;
-        public IUpdateComponent updateComponent;
+        public RenderComponent renderComponent;
+        public UpdateComponent updateComponent;
         /*
         public bool canRender;
         public bool canUpdate;
@@ -21,7 +21,7 @@ namespace Eventide4
         }
         */
 
-        public static Entity Connect(IRenderComponent renderComponent, IUpdateComponent updateComponent)
+        public static Entity Connect(RenderComponent renderComponent, UpdateComponent updateComponent)
         {
             Entity entity = new Entity(renderComponent, updateComponent);
             if(renderComponent != null) renderComponent.host = entity;
@@ -29,7 +29,7 @@ namespace Eventide4
             return entity;
         }
 
-        public Entity(IRenderComponent renderComp, IUpdateComponent updateComp)
+        public Entity(RenderComponent renderComp, UpdateComponent updateComp)
         {
             renderComponent = renderComp;
             updateComponent = updateComp;

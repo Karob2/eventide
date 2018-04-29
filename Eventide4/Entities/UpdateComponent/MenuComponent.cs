@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class MenuComponent : Component, IUpdateComponent
+    public class MenuComponent : UpdateComponent
     {
         /*
         public MenuComponent()
@@ -25,7 +25,7 @@ namespace Eventide4
             menuGroup.menuList.Add(this);
         }
 
-        public void Update()
+        public override void Update()
         {
             Rectangle boundary = host.renderComponent.Boundary();
             if (ContentHandler.mouseX >= boundary.X && ContentHandler.mouseX < boundary.X + boundary.Width

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class ImageComponent : Component, IRenderComponent
+    public class ImageComponent : RenderComponent
     {
         public Texture2D texture;
         public Vector2 position;
@@ -20,12 +20,12 @@ namespace Eventide4
             position = pos;
         }
 
-        public Rectangle Boundary()
+        public override Rectangle Boundary()
         {
             return new Rectangle();
         }
 
-        public void Render()
+        public override void Render()
         {
             //ContentHandler.spriteBatch.Draw(texture, position, Color.White);
             Rectangle area = new Rectangle(0, 0, ContentHandler.graphicsManager.PreferredBackBufferWidth, ContentHandler.graphicsManager.PreferredBackBufferHeight);

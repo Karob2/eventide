@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class TextComponent : Component, IRenderComponent
+    public class TextComponent : RenderComponent
     {
         public string text;
         public Vector2 position;
@@ -29,7 +29,7 @@ namespace Eventide4
             color = _color;
         }
         
-        public Rectangle Boundary()
+        public override Rectangle Boundary()
         {
             Vector2 size = ContentHandler.font.MeasureString(text);
             return new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
@@ -45,7 +45,7 @@ namespace Eventide4
             return null;
         }
         */
-        public void Render()
+        public override void Render()
         {
             //spriteBatch.DrawString(font, contentDirectory, new Vector2(100, 100), Color.Black);
             ContentHandler.spriteBatch.DrawString(ContentHandler.font, text, position,
