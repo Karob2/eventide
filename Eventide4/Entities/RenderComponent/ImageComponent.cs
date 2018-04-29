@@ -20,9 +20,9 @@ namespace Eventide4
             position = pos;
         }
 
-        public dynamic Request(RenderProperty property)
+        public Rectangle Boundary()
         {
-            return null;
+            return new Rectangle();
         }
 
         public void Render()

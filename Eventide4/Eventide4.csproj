@@ -42,15 +42,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\AIComponent.cs" />
+    <Compile Include="Entities\UpdateComponent\AIComponent.cs" />
     <Compile Include="Entities\Component.cs" />
     <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\ImageComponent.cs" />
+    <Compile Include="Entities\RenderComponent\ImageComponent.cs" />
     <Compile Include="Entities\IRenderComponent.cs" />
     <Compile Include="Entities\IUpdateComponent.cs" />
-    <Compile Include="Entities\MenuComponent.cs" />
-    <Compile Include="Entities\SpriteComponent.cs" />
-    <Compile Include="Entities\TextComponent.cs" />
+    <Compile Include="Entities\UpdateComponent\MenuComponent.cs" />
+    <Compile Include="Entities\RenderComponent\SpriteComponent.cs" />
+    <Compile Include="Entities\RenderComponent\TextComponent.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Handlers\ContentHandler.cs" />
     <Compile Include="Program.cs" />

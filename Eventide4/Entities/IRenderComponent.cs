@@ -9,17 +9,19 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
+    /*
     public enum RenderProperty
     {
         Boundary
     }
+    */
 
     public interface IRenderComponent
     {
         //void setHost(Entity _host);
         Entity host { get; set; }
-        //Rectangle Boundary();
-        dynamic Request(RenderProperty property);
+        Rectangle Boundary();
+        //dynamic Request(RenderProperty property);
         void Render();
     }
 }

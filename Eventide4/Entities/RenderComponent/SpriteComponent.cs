@@ -11,9 +11,9 @@ namespace Eventide4
 {
     public class SpriteComponent : Component, IRenderComponent
     {
-        public dynamic Request(RenderProperty property)
+        public Rectangle Boundary()
         {
-            return null;
+            return new Rectangle();
         }
 
         public void Render()

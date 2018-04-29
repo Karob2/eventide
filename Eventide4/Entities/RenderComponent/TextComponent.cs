@@ -28,13 +28,13 @@ namespace Eventide4
             position = _position;
             color = _color;
         }
-        /*
+        
         public Rectangle Boundary()
         {
             Vector2 size = ContentHandler.font.MeasureString(text);
             return new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
         }
-        */
+        /*
         public dynamic Request(RenderProperty property)
         {
             if (property == RenderProperty.Boundary)
@@ -44,6 +44,7 @@ namespace Eventide4
             }
             return null;
         }
+        */
         public void Render()
         {
             //spriteBatch.DrawString(font, contentDirectory, new Vector2(100, 100), Color.Black);

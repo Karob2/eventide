@@ -27,7 +27,7 @@ namespace Eventide4
 
         public void Update()
         {
-            Rectangle boundary = host.renderComponent.Request(RenderProperty.Boundary);
+            Rectangle boundary = host.renderComponent.Boundary();
             if (ContentHandler.mouseX >= boundary.X && ContentHandler.mouseX < boundary.X + boundary.Width
                 && ContentHandler.mouseY >= boundary.Y && ContentHandler.mouseY < boundary.Y + boundary.Height)
             {
