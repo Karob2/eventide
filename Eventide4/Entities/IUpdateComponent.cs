@@ -8,6 +8,7 @@ namespace Eventide4
 {
     public interface IUpdateComponent
     {
+        void setHost(Entity _host);
         void Update();
     }
 }

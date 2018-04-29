@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class ImageComponent : IRenderComponent
+    public class ImageComponent : Component, IRenderComponent
     {
         public Texture2D texture;
         public Vector2 position;

@@ -8,6 +8,7 @@ namespace Eventide4
 {
     public interface IRenderComponent
     {
+        void setHost(Entity _host);
         void Render();
     }
 }

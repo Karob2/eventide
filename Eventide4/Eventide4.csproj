@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\AIComponent.cs" />
+    <Compile Include="Entities\Component.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\ImageComponent.cs" />
     <Compile Include="Entities\IRenderComponent.cs" />

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class TextComponent : IRenderComponent
+    public class TextComponent : Component, IRenderComponent
     {
         public string text;
         public Vector2 position;

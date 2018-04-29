@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class SpriteComponent : IRenderComponent
+    public class SpriteComponent : Component, IRenderComponent
     {
         public void Render()
         {

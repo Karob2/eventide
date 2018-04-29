@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class MenuComponent : IUpdateComponent
+    public class MenuComponent : Component, IUpdateComponent
     {
         public MenuComponent()
         {

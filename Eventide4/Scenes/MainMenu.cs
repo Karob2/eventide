@@ -16,11 +16,11 @@ namespace Eventide4
         public MainMenu()
         {
             sceneType = SceneType.Menu;
-            entityList.Add(new Entity(
+            entityList.Add(Entity.Connect(
                 new ImageComponent("backdrops/cloudbg", new Vector2(0, 0)),
                 null
                 ));
-            entityList.Add(new Entity(
+            entityList.Add(Entity.Connect(
                 new TextComponent(
                     "UseKerning controls the layout\n" +
                     "of the font. If this value is\n" +

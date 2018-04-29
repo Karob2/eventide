@@ -21,15 +21,13 @@ namespace Eventide4
         }
         */
 
-        /*
         public static Entity Connect(IRenderComponent renderComponent, IUpdateComponent updateComponent)
         {
             Entity entity = new Entity(renderComponent, updateComponent);
-            renderComponent.host = entity;
-            updateComponent.host = entity;
+            if(renderComponent != null) renderComponent.setHost(entity);
+            if(updateComponent != null) updateComponent.setHost(entity);
             return entity;
         }
-        */
 
         public Entity(IRenderComponent renderComp, IUpdateComponent updateComp)
         {

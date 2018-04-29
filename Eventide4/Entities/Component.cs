@@ -9,5 +9,10 @@ namespace Eventide4
     public class Component
     {
         public Entity host;
+
+        public void setHost(Entity _host)
+        {
+            host = _host;
+        }
     }
 }
