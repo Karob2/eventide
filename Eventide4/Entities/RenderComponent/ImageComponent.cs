@@ -20,10 +20,7 @@ namespace Eventide4
             position = pos;
         }
 
-        public override Rectangle Boundary()
-        {
-            return new Rectangle();
-        }
+        //public override Rectangle Boundary()
 
         public override void Render()
         {

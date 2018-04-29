@@ -11,10 +11,7 @@ namespace Eventide4
 {
     public class SpriteComponent : RenderComponent
     {
-        public override Rectangle Boundary()
-        {
-            return new Rectangle();
-        }
+        //public override Rectangle Boundary()
 
         public override void Render()
         {
