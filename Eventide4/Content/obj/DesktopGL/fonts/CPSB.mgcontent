@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Projects/mono/Eventide4/Eventide4/Content/fonts/CPSB.spritefont</SourceFile>
+  <SourceTime>2018-04-27T14:34:23.2812526-05:00</SourceTime>
+  <DestFile>C:/Projects/mono/Eventide4/Eventide4/Content/bin/DesktopGL/fonts/CPSB.xnb</DestFile>
+  <DestTime>2018-04-27T14:34:26.7264496-05:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2017-03-01T09:05:36-06:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2017-03-01T09:05:36-06:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
