@@ -16,10 +16,10 @@ namespace Eventide4.Library
         protected override Texture2D Load(string path) {
 #if DEBUG
             string fullPath = Program.contentDirectory + path;
-            if (File.Exists(path + ".jpg"))
-                fullPath = path + ".jpg";
+            if (File.Exists(fullPath + ".jpg"))
+                fullPath = fullPath + ".jpg";
             else
-                fullPath = path + ".png";
+                fullPath = fullPath + ".png";
             FileStream fileStream = new FileStream(fullPath, FileMode.Open);
             Texture2D texture = Texture2D.FromStream(GlobalServices.Game.GraphicsDevice, fileStream);
             fileStream.Dispose();

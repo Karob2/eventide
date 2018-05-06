@@ -8,18 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+// TODO: Add the sub namespace.
 namespace Eventide4
 {
     public class MainMenu : Scene
     {
         //SpriteBatch spriteBatch;
-        MenuGroup menu;
+        //MenuGroup menu;
 
         public static readonly Color menuTextColor = new Color(0f, 0f, 0.5f);
 
         public MainMenu()
         {
             sceneType = SceneType.Menu;
+            Library.Sprite sprite = spriteLibrary.Register("sprites/ball");
+            Systems.SpriteState spriteState = new Systems.SpriteState(sprite, 0f, 0f, true);
+            entityList.Add(new Systems.Entity(spriteState));
+            /*
             entityList.Add(Entity.Connect(
                 new ImageComponent("backdrops/cloudbg", new Vector2(0, 0)),
                 null

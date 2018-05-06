@@ -42,23 +42,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\UpdateComponent\AIComponent.cs" />
-    <Compile Include="Entities\Component.cs" />
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\RenderComponent\ImageComponent.cs" />
-    <Compile Include="Entities\RenderComponent.cs" />
-    <Compile Include="Entities\UpdateComponent.cs" />
-    <Compile Include="Entities\UpdateComponent\MenuComponent.cs" />
-    <Compile Include="Entities\RenderComponent\SpriteComponent.cs" />
-    <Compile Include="Entities\RenderComponent\TextComponent.cs" />
-    <Compile Include="EntityDataSystem\EntityData.cs" />
-    <Compile Include="EntityDataSystem\EntityNew.cs" />
-    <Compile Include="EntitySystem\Entity.cs" />
-    <Compile Include="EntitySystem\Physics.cs" />
-    <Compile Include="EntitySystem\SpriteState.cs" />
+    <Compile Include="Systems\Entity.cs" />
+    <Compile Include="Systems\Physics.cs" />
+    <Compile Include="Systems\SpriteState.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Handlers\ContentHandler.cs" />
     <Compile Include="Library\Library.cs" />
+    <Compile Include="Library\Sprite.cs" />
     <Compile Include="Library\SpriteLibrary.cs" />
     <Compile Include="Library\TextureLibrary.cs" />
     <Compile Include="Program.cs" />

@@ -13,9 +13,18 @@ namespace Eventide4.Library
 {
     public class SpriteLibrary : Library<string, Sprite>
     {
+        TextureLibrary textureLibrary;
+
+        public SpriteLibrary(TextureLibrary textureLibrary)
+        {
+            this.textureLibrary = textureLibrary;
+        }
+
         protected override Sprite Load(string path)
         {
-            return new Sprite("ball", 32, 32);
+            Sprite sprite = new Sprite(path, 32f, 32f);
+            sprite.SetTexture(textureLibrary.Register(path));
+            return sprite;
         }
     }
 }

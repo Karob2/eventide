@@ -15,12 +15,14 @@ namespace Eventide4
         public static Game Game { get; set; }
         public static GraphicsDeviceManager GraphicsManager { get; set; }
         public static ContentManager Content { get; set; }
+        public static SpriteBatch SpriteBatch { get; set; }
 
         public static void Initialize(Game game, GraphicsDeviceManager graphicsManager)
         {
             Game = game;
             GraphicsManager = graphicsManager;
             Content = game.Content;
+            SpriteBatch = new SpriteBatch(game.GraphicsDevice);
         }
     }
 }

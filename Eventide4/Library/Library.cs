@@ -44,6 +44,11 @@ namespace Eventide4.Library
             libraries.Add(library);
             return library;
         }
+        // This alternative allows the inheritors to have custom constructors.
+        public static void AddLibrary(Library<K, T> library)
+        {
+            libraries.Add(library);
+        }
 
         // Libraries should always be removed from the static list via this function when they are no longer needed.
         // Otherwise, unneeded textures will not be garbage collected.
@@ -61,6 +66,11 @@ namespace Eventide4.Library
         */
 
         Dictionary<K, T> list;
+
+        public Library()
+        {
+            list = new Dictionary<K, T>();
+        }
 
         // This method checks if a texture has been loaded already, loads if necessary, then returns the reference.
         // --The local library is checked first.

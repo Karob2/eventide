@@ -16,14 +16,25 @@ namespace Eventide4
             Menu,
             Level
         }
-        public static Scene activeScene;
+        static Scene activeScene;
 
-        public SceneType sceneType;
-        public List<Entity> entityList;
+        protected SceneType sceneType;
+        protected List<Systems.Entity> entityList;
+        protected Systems.Physics physics;
+        protected Library.TextureLibrary textureLibrary;
+        protected Library.SpriteLibrary spriteLibrary;
 
         public Scene()
         {
-            entityList = new List<Entity>();
+            entityList = new List<Systems.Entity>();
+
+            physics = new Systems.Physics();
+
+            textureLibrary = new Library.TextureLibrary();
+            Library.TextureLibrary.AddLibrary(textureLibrary);
+
+            spriteLibrary = new Library.SpriteLibrary(textureLibrary);
+            Library.SpriteLibrary.AddLibrary(spriteLibrary);
         }
 
         public static void Initialize()
@@ -39,30 +50,22 @@ namespace Eventide4
         public static void RenderScene()
         {
             //ContentHandler.spriteBatch.Begin(samplerState: SamplerState.LinearWrap);
-            ContentHandler.spriteBatch.Begin();
+            GlobalServices.SpriteBatch.Begin();
             activeScene.Render();
-            ContentHandler.spriteBatch.End();
+            GlobalServices.SpriteBatch.End();
         }
 
         public void Update()
         {
-            foreach (Entity entity in entityList)
-            {
-                if (entity.updateComponent != null)
-                {
-                    entity.Update();
-                }
-            }
+            physics.Update();
+            physics.Synchronize();
         }
 
         public void Render()
         {
-            foreach(Entity entity in entityList)
+            foreach (Systems.Entity entity in entityList)
             {
-                if (entity.renderComponent != null)
-                {
-                    entity.Render();
-                }
+                entity.Render();
             }
         }
     }
