@@ -94,7 +94,7 @@ namespace Eventide4.Library
             }
 
             // Otherwise, load the texture and store a reference in the local library.
-            Load(key);
+            item = Load(key);
             list.Add(key, item);
             return item;
         }
