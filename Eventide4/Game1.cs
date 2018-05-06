@@ -1,6 +1,4 @@
-﻿#define DEBUG
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
@@ -54,7 +52,8 @@ namespace Eventide4
 
             //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
-            ContentHandler.Initialize(this, graphicsManager);
+            //ContentHandler.Initialize(this, graphicsManager);
+            GlobalServices.Initialize(this, graphicsManager);
             base.Initialize();
         }
 
@@ -76,7 +75,7 @@ namespace Eventide4
             */
             //font = Content.Load<SpriteFont>("fonts/CPSB");
 
-            ContentHandler.LoadGlobalContent();
+            //ContentHandler.LoadGlobalContent();
             Scene.Initialize();
         }
 
@@ -118,7 +117,7 @@ namespace Eventide4
             ballPosition.X = Math.Min(Math.Max(ballTexture.Width / 2, ballPosition.X), graphics.PreferredBackBufferWidth - ballTexture.Width / 2);
             ballPosition.Y = Math.Min(Math.Max(ballTexture.Height / 2, ballPosition.Y), graphics.PreferredBackBufferHeight - ballTexture.Height / 2);
             */
-            ContentHandler.UpdateMouse();
+            //ContentHandler.UpdateMouse();
 
             Scene.UpdateScene();
 
@@ -132,10 +131,11 @@ namespace Eventide4
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.Clear(Color.Transparent);
+/*
 #if DEBUG
             GraphicsDevice.Clear(Color.CornflowerBlue);
 #endif
-
+*/
             // TODO: Add your drawing code here
             /*
             spriteBatch.Begin();

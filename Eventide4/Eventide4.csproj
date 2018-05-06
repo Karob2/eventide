@@ -51,13 +51,22 @@
     <Compile Include="Entities\UpdateComponent\MenuComponent.cs" />
     <Compile Include="Entities\RenderComponent\SpriteComponent.cs" />
     <Compile Include="Entities\RenderComponent\TextComponent.cs" />
+    <Compile Include="EntityDataSystem\EntityData.cs" />
+    <Compile Include="EntityDataSystem\EntityNew.cs" />
+    <Compile Include="EntitySystem\Entity.cs" />
+    <Compile Include="EntitySystem\Physics.cs" />
+    <Compile Include="EntitySystem\SpriteState.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Handlers\ContentHandler.cs" />
+    <Compile Include="Library\Library.cs" />
+    <Compile Include="Library\SpriteLibrary.cs" />
+    <Compile Include="Library\TextureLibrary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Level.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="GlobalServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

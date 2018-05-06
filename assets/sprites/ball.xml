@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="Eventide4.Library.SpriteParam">
+    <Item>
+      <TextureName>ball</TextureName>
+      <XCenter>32</XCenter>
+      <YCenter>32</YCenter>
+    </Item>
+  </Asset>
+</XnaContent>
