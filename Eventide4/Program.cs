@@ -26,6 +26,7 @@ namespace Eventide4
         public static string contentDirectory = "C:/Projects/mono/Eventide4/assets/";
         // TODO: This isn't good practice since the option isn't exposed to other coders.
         // Consider using a relative symlink instead.
+        // Public variables are best avoided for potential multithreading issues.
 #endif
 
         /// <summary>

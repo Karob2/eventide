@@ -12,7 +12,7 @@ namespace Eventide4
     /// </summary>
     public class Game1 : Game
     {
-        public GraphicsDeviceManager graphicsManager;
+        GraphicsDeviceManager graphicsManager;
         /*
         SpriteBatch spriteBatch;
         Texture2D ballTexture;
@@ -54,6 +54,9 @@ namespace Eventide4
 
             //ContentHandler.Initialize(this, graphicsManager);
             GlobalServices.Initialize(this, graphicsManager);
+            GlobalServices.Content.RootDirectory = "Content";
+            Library.TextureLibrary.Initialize();
+            Library.SpriteLibrary.Initialize();
             base.Initialize();
         }
 
