@@ -122,6 +122,8 @@ namespace Eventide4
             */
             //ContentHandler.UpdateMouse();
 
+            GlobalServices.GameTime = gameTime;
+
             Scene.UpdateScene();
 
             base.Update(gameTime);
@@ -134,11 +136,12 @@ namespace Eventide4
         protected override void Draw(GameTime gameTime)
         {
             //GraphicsDevice.Clear(Color.Transparent);
-/*
-#if DEBUG
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-#endif
-*/
+            GraphicsDevice.Clear(Color.Black);
+            /*
+            #if DEBUG
+                        GraphicsDevice.Clear(Color.CornflowerBlue);
+            #endif
+            */
             // TODO: Add your drawing code here
             /*
             spriteBatch.Begin();

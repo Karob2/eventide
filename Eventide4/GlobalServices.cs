@@ -16,6 +16,7 @@ namespace Eventide4
         public static GraphicsDeviceManager GraphicsManager { get; set; }
         public static ContentManager Content { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
+        public static GameTime GameTime { get; set; }
 
         public static void Initialize(Game game, GraphicsDeviceManager graphicsManager)
         {

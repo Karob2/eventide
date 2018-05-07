@@ -22,7 +22,7 @@ namespace Eventide4.Library
 
         protected override Sprite Load(string path)
         {
-            Sprite sprite = new Sprite(path, 32f, 32f);
+            Sprite sprite = new Sprite(path, 64f, 64f);
             sprite.SetTexture(textureLibrary.Register(path));
             return sprite;
         }

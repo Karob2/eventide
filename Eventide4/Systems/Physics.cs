@@ -9,21 +9,27 @@ using System.Threading.Tasks;
 
 namespace Eventide4.Systems
 {
+    // I don't like this being a class, but I haven't found a good way to make more performance-minded access to this
+    // information without destructuring it.
+    // If I'm going the class route, I might as well write the physics system as a single class with multiple instances.
+    public class Item
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float XVelocity { get; set; }
+        public float YVelocity { get; set; }
+
+        public Item(float x, float y, float xVelocity, float yVelocity)
+        {
+            this.X = x;
+            this.Y = y;
+            this.XVelocity = xVelocity;
+            this.YVelocity = yVelocity;
+        }
+    }
+
     public class Physics
     {
-        public struct Item
-        {
-            public float x, y;
-            public float xVelocity, yVelocity;
-
-            public Item(float x, float y, float xVelocity, float yVelocity)
-            {
-                this.x = x;
-                this.y = y;
-                this.xVelocity = xVelocity;
-                this.yVelocity = yVelocity;
-            }
-        }
         List<Item> itemList;
         List<Entity> owner;
         List<SpriteState> spriteState;
@@ -55,6 +61,11 @@ namespace Eventide4.Systems
 
         public void Update()
         {
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                itemList[i].X += itemList[i].XVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
+                itemList[i].Y += itemList[i].YVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         public void Synchronize()
@@ -63,8 +74,8 @@ namespace Eventide4.Systems
             {
                 if (spriteState[i] != null)
                 {
-                    spriteState[i].X = itemList[i].x;
-                    spriteState[i].Y = itemList[i].y;
+                    spriteState[i].X = itemList[i].X;
+                    spriteState[i].Y = itemList[i].Y;
                 }
             }
         }

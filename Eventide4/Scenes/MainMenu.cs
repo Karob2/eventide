@@ -23,7 +23,9 @@ namespace Eventide4
             sceneType = SceneType.Menu;
             Library.Sprite sprite = spriteLibrary.Register("sprites/ball");
             Systems.SpriteState spriteState = new Systems.SpriteState(sprite, 0f, 0f, true);
-            entityList.Add(new Systems.Entity(spriteState));
+            Systems.Entity entity = new Systems.Entity(spriteState);
+            entityList.Add(entity);
+            physics.AddItem(entity, 100f, 100f, 10f, 10f, spriteState);
             /*
             entityList.Add(Entity.Connect(
                 new ImageComponent("backdrops/cloudbg", new Vector2(0, 0)),
