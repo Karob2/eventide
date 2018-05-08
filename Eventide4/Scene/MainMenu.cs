@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-// TODO: Add the sub namespace.
-namespace Eventide4
+namespace Eventide4.Scene
 {
     public class MainMenu : Scene
     {
@@ -21,11 +20,8 @@ namespace Eventide4
         public MainMenu()
         {
             sceneType = SceneType.Menu;
-            Library.Sprite sprite = spriteLibrary.Register("sprites/ball");
-            Systems.SpriteState spriteState = new Systems.SpriteState(sprite, 0f, 0f, true);
-            Systems.Entity entity = new Systems.Entity(spriteState);
+            Systems.Entity entity = Systems.Entity.CreateEntity(this, "sprites/ball", 100f, 100f);
             entityList.Add(entity);
-            physics.AddItem(entity, 100f, 100f, 10f, 10f, spriteState);
             /*
             entityList.Add(Entity.Connect(
                 new ImageComponent("backdrops/cloudbg", new Vector2(0, 0)),

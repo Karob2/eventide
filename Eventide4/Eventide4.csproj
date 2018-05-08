@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Exception\DebugException.cs" />
+    <Compile Include="Systems\BodyState.cs" />
     <Compile Include="Systems\Entity.cs" />
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Systems\SpriteState.cs" />
@@ -53,9 +54,9 @@
     <Compile Include="Library\TextureLibrary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenes\Level.cs" />
-    <Compile Include="Scenes\MainMenu.cs" />
-    <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scene\Level.cs" />
+    <Compile Include="Scene\MainMenu.cs" />
+    <Compile Include="Scene\Scene.cs" />
     <Compile Include="GlobalServices.cs" />
   </ItemGroup>
   <ItemGroup>

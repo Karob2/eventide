@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventide4
+namespace Eventide4.Scene
 {
     public class Scene
     {
@@ -23,6 +23,9 @@ namespace Eventide4
         protected Systems.Physics physics;
         protected Library.TextureLibrary textureLibrary;
         protected Library.SpriteLibrary spriteLibrary;
+
+        public Systems.Physics Physics { get { return physics; } }
+        public Library.SpriteLibrary SpriteLibrary { get { return spriteLibrary; } }
 
         public Scene()
         {

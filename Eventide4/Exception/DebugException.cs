@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Eventide4
+namespace Eventide4.Exception
 {
     //usage: throw new DebugException(string);
 
-    public class DebugException : Exception
+    public class DebugException : System.Exception
     {
         public DebugException()
         {
@@ -15,7 +15,7 @@ namespace Eventide4
         {
         }
 
-        public DebugException(string message, Exception inner)
+        public DebugException(string message, System.Exception inner)
             : base(message, inner)
         {
         }

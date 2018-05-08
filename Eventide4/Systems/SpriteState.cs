@@ -14,12 +14,12 @@ namespace Eventide4.Systems
         public Boolean Visible { get; set; }
         Library.Sprite sprite;
 
-        public SpriteState(Library.Sprite sprite, float x = 0f, float y = 0f, Boolean visible = true)
+        public SpriteState(Library.Sprite sprite, float x = 0f, float y = 0f)
         {
             this.sprite = sprite;
             X = x;
             Y = y;
-            Visible = visible;
+            Visible = true;
         }
 
         public void Render()

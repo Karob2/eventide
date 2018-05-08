@@ -79,7 +79,7 @@ namespace Eventide4
             //font = Content.Load<SpriteFont>("fonts/CPSB");
 
             //ContentHandler.LoadGlobalContent();
-            Scene.Initialize();
+            Scene.Scene.Initialize();
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Eventide4
 
             GlobalServices.GameTime = gameTime;
 
-            Scene.UpdateScene();
+            Scene.Scene.UpdateScene();
 
             base.Update(gameTime);
         }
@@ -153,7 +153,7 @@ namespace Eventide4
             spriteBatch.DrawString(font, contentDirectory, new Vector2(100, 100), Color.Black, 0f, new Vector2(0f, 0f), 1f, SpriteEffects.None, 0.5f);
             spriteBatch.End();
             */
-            Scene.RenderScene();
+            Scene.Scene.RenderScene();
 
             base.Draw(gameTime);
         }
