@@ -11,22 +11,29 @@ using System.Threading.Tasks;
 namespace Eventide4.Library
 {
     [Serializable]
+    [System.Xml.Serialization.XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
     public class Sprite
     {
         // TODO: TextureName may not be needed after the texture has been loaded.
-        string TextureName;
-        float XCenter;
-        float YCenter;
+        public string TextureName { get; set; }
+        public float XCenter { get; set; }
+        public float YCenter { get; set; }
         //[XmlElement("Color")]
         //public Color Color;
 
         Texture2D texture;
 
-        public Sprite(string textureName, float xCenter, float yCenter)
+/*
+        public Sprite(float xCenter, float yCenter)
         {
-            TextureName = textureName;
+            //TextureName = textureName;
             XCenter = xCenter;
             YCenter = yCenter;
+        }
+        */
+        public Sprite()
+        {
+
         }
 
         public void SetTexture(Texture2D texture)

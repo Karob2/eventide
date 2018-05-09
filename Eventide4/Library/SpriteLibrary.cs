@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Xml.Serialization;
+using System.Xml.Linq;
 
 namespace Eventide4.Library
 {
@@ -22,8 +24,29 @@ namespace Eventide4.Library
 
         protected override Sprite Load(string path)
         {
-            Sprite sprite = new Sprite(path, 64f, 64f);
-            sprite.SetTexture(textureLibrary.Register(path));
+#if DEBUG
+            XDocument document = XDocument.Load(Program.contentDirectory + "spriteconfigs/" + path + ".xml");
+            string xml = document.ToString();
+            
+            XmlSerializer serializer = new XmlSerializer(typeof(Sprite));
+            StringReader reader = new StringReader(xml);
+            object obj = serializer.Deserialize(reader);
+            Sprite sprite = (Sprite)obj;
+            reader.Close();
+            sprite.SetTexture(textureLibrary.Register("sprites/" + sprite.TextureName));
+            /*
+            // The below code can write an XML object to see what the XML structure should be like.
+            Sprite sprite = new Sprite();
+            sprite.SetTexture(textureLibrary.Register("sprites/ball"));
+            sprite.XCenter = 64f;
+            sprite.YCenter = 64f;
+            XmlSerializer serializer = new XmlSerializer(typeof(Sprite));
+            FileStream fs = new FileStream(Program.contentDirectory + "spriteconfigs/test.xml", FileMode.Create);
+            TextWriter writer = new StreamWriter(fs, new UTF8Encoding());
+            serializer.Serialize(writer, sprite);
+            writer.Close();
+            */
+#endif
             return sprite;
         }
     }
