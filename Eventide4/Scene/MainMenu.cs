@@ -21,6 +21,7 @@ namespace Eventide4.Scene
         {
             sceneType = SceneType.Menu;
             Systems.Entity entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("demoball");
+            entity.SetVelocity(20f, 10f);
             entityList.Add(entity);
             /*
             entityList.Add(Entity.Connect(

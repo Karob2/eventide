@@ -28,13 +28,11 @@ namespace Eventide4.Systems
         // Should there be a "ControlState" object that runs from parameters read into a "ControlLibrary" (AI parameters)
         //   that handles collision response?
 
-        public BodyState(float x, float y, float xVelocity, float yVelocity)
+        public BodyState(float x, float y)
         {
             //this.SpriteState = spriteState;
             this.X = x;
             this.Y = y;
-            this.XVelocity = xVelocity;
-            this.YVelocity = yVelocity;
         }
     }
 }

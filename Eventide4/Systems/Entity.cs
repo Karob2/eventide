@@ -19,7 +19,7 @@ namespace Eventide4.Systems
 
         public Entity AddBody(float x = 0f, float y = 0f)
         {
-            bodyState = new BodyState(x, y, 10f, 10f);
+            bodyState = new BodyState(x, y);
             scene.Physics.AddBody(bodyState);
             if (spriteState != null)
             {
@@ -37,6 +37,12 @@ namespace Eventide4.Systems
                 spriteState.AddBody(bodyState);
             }
             return this;
+        }
+
+        public void SetVelocity(float xVelocity, float yVelocity)
+        {
+            bodyState.XVelocity = xVelocity;
+            bodyState.YVelocity = yVelocity;
         }
 
         public void Render()
