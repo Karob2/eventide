@@ -25,8 +25,7 @@ namespace Eventide4.Library
         protected override Sprite Load(string path)
         {
             // if spriteconfig does not exist, try to load image as a default basic sprite?
-#if DEBUG
-            XDocument document = XDocument.Load(Program.contentDirectory + "spriteconfigs/" + path + ".xml");
+            XDocument document = XDocument.Load(GlobalServices.Content.RootDirectory + "/" + "spriteconfigs/" + path + ".xml");
             string xml = document.ToString();
             
             XmlSerializer serializer = new XmlSerializer(typeof(Sprite));
@@ -47,7 +46,6 @@ namespace Eventide4.Library
             serializer.Serialize(writer, sprite);
             writer.Close();
             */
-#endif
             return sprite;
         }
     }

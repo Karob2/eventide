@@ -54,7 +54,12 @@ namespace Eventide4
 
             //ContentHandler.Initialize(this, graphicsManager);
             GlobalServices.Initialize(this, graphicsManager);
+#if DEBUG
+            GlobalServices.Content.RootDirectory = "../../../../../Content";
+#else
             GlobalServices.Content.RootDirectory = "Content";
+            // TODO: Need to add an app storage directory for save files and custom content.
+#endif
             Library.TextureLibrary.Initialize();
             Library.SpriteLibrary.Initialize();
             base.Initialize();
@@ -138,9 +143,9 @@ namespace Eventide4
             //GraphicsDevice.Clear(Color.Transparent);
             GraphicsDevice.Clear(Color.Black);
             /*
-            #if DEBUG
+#if DEBUG
                         GraphicsDevice.Clear(Color.CornflowerBlue);
-            #endif
+#endif
             */
             // TODO: Add your drawing code here
             /*
