@@ -20,7 +20,7 @@ namespace Eventide4.Scene
         public MainMenu()
         {
             sceneType = SceneType.Menu;
-            Systems.Entity entity = Systems.Entity.CreateEntity(this, "demoball", 100f, 100f);
+            Systems.Entity entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("demoball");
             entityList.Add(entity);
             /*
             entityList.Add(Entity.Connect(

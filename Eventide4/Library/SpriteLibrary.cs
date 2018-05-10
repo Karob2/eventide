@@ -24,6 +24,7 @@ namespace Eventide4.Library
 
         protected override Sprite Load(string path)
         {
+            // if spriteconfig does not exist, try to load image as a default basic sprite?
 #if DEBUG
             XDocument document = XDocument.Load(Program.contentDirectory + "spriteconfigs/" + path + ".xml");
             string xml = document.ToString();

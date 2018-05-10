@@ -8,36 +8,35 @@ namespace Eventide4.Systems
 {
     public class Entity
     {
-        public static Entity CreateEntity(Scene.Scene scene, string spritePath, float x, float y)
-        {
-            // caller needs to choose whether to have physics object
-            // if spritepath is an image, load as a default basic sprite?
-            Library.Sprite sprite = scene.SpriteLibrary.Register(spritePath);
+        SpriteState spriteState;
+        BodyState bodyState;
+        Scene.Scene scene;
 
-            Entity entity = new Entity();
-            BodyState bodyState = new BodyState(x, y, 10f, 10f);
-            SpriteState spriteState = new SpriteState(sprite, x, y);
-            spriteState.addBody(bodyState);
-            entity.spriteState = spriteState;
-            entity.bodyState = bodyState;
-            scene.Physics.AddBody(bodyState);
-            return entity;
+        public Entity(Scene.Scene scene)
+        {
+            this.scene = scene;
         }
 
-        public SpriteState spriteState;
-        public BodyState bodyState;
-        //public Physics physics;
-
-        public Entity(SpriteState spriteState = null)
+        public Entity AddBody(float x = 0f, float y = 0f)
         {
-            /*
-            this.spriteState = spriteState;
-            //this.physics = physics;
+            bodyState = new BodyState(x, y, 10f, 10f);
+            scene.Physics.AddBody(bodyState);
             if (spriteState != null)
             {
-
+                spriteState.AddBody(bodyState);
             }
-            */
+            return this;
+        }
+
+        public Entity AddSprite(string path, float x = 0f, float y = 0f)
+        {
+            Library.Sprite sprite = scene.SpriteLibrary.Register(path);
+            spriteState = new SpriteState(sprite, x, y);
+            if (bodyState != null)
+            {
+                spriteState.AddBody(bodyState);
+            }
+            return this;
         }
 
         public void Render()

@@ -24,7 +24,7 @@ namespace Eventide4.Systems
             Visible = true;
         }
 
-        public void addBody(BodyState body)
+        public void AddBody(BodyState body)
         {
             this.body = body;
         }
