@@ -23,14 +23,14 @@ namespace Eventide4.Systems
         public float XVelocity { get; set; }
         public float YVelocity { get; set; }
         //public Entity Owner { get; set; }
-        public SpriteState SpriteState { get; set; }
+        //public SpriteState SpriteState { get; set; }
         // Add tag list, for collision purposes
         // Should there be a "ControlState" object that runs from parameters read into a "ControlLibrary" (AI parameters)
         //   that handles collision response?
 
-        public BodyState(SpriteState spriteState, float x, float y, float xVelocity, float yVelocity)
+        public BodyState(float x, float y, float xVelocity, float yVelocity)
         {
-            this.SpriteState = spriteState;
+            //this.SpriteState = spriteState;
             this.X = x;
             this.Y = y;
             this.XVelocity = xVelocity;

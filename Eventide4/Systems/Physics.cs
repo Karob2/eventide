@@ -53,7 +53,7 @@ namespace Eventide4.Systems
                 bodyList[i].Y += bodyList[i].YVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
             }
         }
-
+        /*
         public void Synchronize()
         {
             for (int i = 0; i < bodyList.Count; i++)
@@ -65,5 +65,6 @@ namespace Eventide4.Systems
                 }
             }
         }
+        */
     }
 }

@@ -15,8 +15,9 @@ namespace Eventide4.Systems
             Library.Sprite sprite = scene.SpriteLibrary.Register(spritePath);
 
             Entity entity = new Entity();
+            BodyState bodyState = new BodyState(x, y, 10f, 10f);
             SpriteState spriteState = new SpriteState(sprite, x, y);
-            BodyState bodyState = new BodyState(spriteState, x, y, 10f, 10f);
+            spriteState.addBody(bodyState);
             entity.spriteState = spriteState;
             entity.bodyState = bodyState;
             scene.Physics.AddBody(bodyState);

@@ -9,24 +9,36 @@ namespace Eventide4.Systems
     // TODO: If alternative visual states aren't needed, perhaps SpriteState could be incorporated directly into the Entity class.
     public class SpriteState
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        float x, y;
+        //public float X { get { return x; } set { x = value; } }
+        //public float Y { get { return y; } set { y = value; } }
         public Boolean Visible { get; set; }
         Library.Sprite sprite;
+        BodyState body;
 
         public SpriteState(Library.Sprite sprite, float x = 0f, float y = 0f)
         {
             this.sprite = sprite;
-            X = x;
-            Y = y;
+            this.x = x;
+            this.y = y;
             Visible = true;
+        }
+
+        public void addBody(BodyState body)
+        {
+            this.body = body;
         }
 
         public void Render()
         {
             if (Visible && sprite != null)
             {
-                sprite.Render(X, Y);
+                if (body != null)
+                {
+                    x = body.X;
+                    y = body.Y;
+                }
+                sprite.Render(x, y);
             }
         }
     }
