@@ -19,16 +19,18 @@ namespace Eventide4
 
         public static Game Game { get; set; }
         public static GraphicsDeviceManager GraphicsManager { get; set; }
-        public static ContentManager Content { get; set; }
+        public static ContentManager GlobalContent { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
         public static GameTime GameTime { get; set; }
+        public static Library.TextureLibrary GlobalTextures { get; set; }
+        public static Library.SpriteLibrary GlobalSprites { get; set; }
 
         public static void Initialize(string gameName, Game game, GraphicsDeviceManager graphicsManager)
         {
             GameName = gameName;
             Game = game;
             GraphicsManager = graphicsManager;
-            Content = game.Content;
+            GlobalContent = game.Content;
             SpriteBatch = new SpriteBatch(game.GraphicsDevice);
 
 #if DEBUG
@@ -36,7 +38,7 @@ namespace Eventide4
 #else
             ContentDirectory = "Content";
 #endif
-            Content.RootDirectory = ContentDirectory;
+            GlobalContent.RootDirectory = ContentDirectory;
             // TODO: How does this perform on linux? (And any other target OS.)
             SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", gameName);
             // Ugh, should I wash input and output so that backslashes in custom content don't break linux?
@@ -47,11 +49,19 @@ namespace Eventide4
             if (!File.Exists(configPath))
                 File.Create(configPath).Dispose();
             */
+            Library.TextureLibrary.Initialize();
+            Library.SpriteLibrary.Initialize();
+
+            GlobalTextures = new Library.TextureLibrary();
+            Library.TextureLibrary.AddLibrary(GlobalTextures);
+
+            GlobalSprites = new Library.SpriteLibrary(GlobalTextures);
+            Library.SpriteLibrary.AddLibrary(GlobalSprites);
         }
 
         public static ContentManager NewContentManager()
         {
-            return new ContentManager(Content.ServiceProvider, Content.RootDirectory);
+            return new ContentManager(GlobalContent.ServiceProvider, GlobalContent.RootDirectory);
         }
     }
 }

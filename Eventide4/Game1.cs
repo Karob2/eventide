@@ -38,8 +38,6 @@ namespace Eventide4
             graphicsManager.ApplyChanges();
 
             GlobalServices.Initialize(gameName, this, graphicsManager);
-            Library.TextureLibrary.Initialize();
-            Library.SpriteLibrary.Initialize();
             base.Initialize();
         }
 

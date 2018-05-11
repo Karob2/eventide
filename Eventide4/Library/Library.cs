@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Eventide4.Library
 {
+    // TODO: Perhaps I should make libraries only reference themselves and the global library.
+    //   This would avoid some of the memory gymnastics, and excessive resource duplication can be avoided by
+    //   loading multi-active-scene assets in the global library only.
+
     public enum CopyState
     {
         unique,
@@ -30,7 +34,6 @@ namespace Eventide4.Library
         }
     }
     
-
     public class Library<K, T> where T : class
     {
         #region static
@@ -163,6 +166,8 @@ namespace Eventide4.Library
                                 // TODO: This forces unloaded content to reload, but this should only be necessary for
                                 //   ContentManager content. Other content can suffice with reference passing and not
                                 //   calling "Unload(item)" as above.
+                                // Though perhaps it is fair to treat all content as ContentManager content,
+                                //   since it easily could be in the final release.
                                 first = book;
                                 book.Item = Load(key);
                                 book.CopyState = CopyState.unique;
