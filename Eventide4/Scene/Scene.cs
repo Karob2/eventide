@@ -70,5 +70,13 @@ namespace Eventide4.Scene
                 entity.Render();
             }
         }
+
+        public void Unload()
+        {
+            // Content disposal is automatically handled within the libraries:
+            Library.TextureLibrary.RemoveLibrary(textureLibrary);
+            Library.SpriteLibrary.RemoveLibrary(spriteLibrary);
+            // TODO: Should any other scene resources have forced disposal, or does dereferencing suffice?
+        }
     }
 }

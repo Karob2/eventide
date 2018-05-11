@@ -48,5 +48,10 @@ namespace Eventide4
                 File.Create(configPath).Dispose();
             */
         }
+
+        public static ContentManager NewContentManager()
+        {
+            return new ContentManager(Content.ServiceProvider, Content.RootDirectory);
+        }
     }
 }

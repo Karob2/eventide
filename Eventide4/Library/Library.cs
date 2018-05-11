@@ -11,6 +11,26 @@ using System.Threading.Tasks;
 
 namespace Eventide4.Library
 {
+    public enum CopyState
+    {
+        unique,
+        source,
+        copy
+    }
+    
+    public class Book<T> where T : class
+    {
+        public T Item { get; set; }
+        public CopyState CopyState { get; set; }
+
+        public Book (T item, CopyState copyState)
+        {
+            this.Item = item;
+            this.CopyState = copyState;
+        }
+    }
+    
+
     public class Library<K, T> where T : class
     {
         #region static
@@ -44,8 +64,11 @@ namespace Eventide4.Library
 
         // Libraries should always be removed from the static list via this function when they are no longer needed.
         // Otherwise, unneeded textures will not be garbage collected.
+        // TODO: If I ever need to remove multiple libraries in a short time span, it would be more efficient to also
+        //   have a method that flags libraries for removal, then handles them smartly to avoid juggling asset loading.
         public static void RemoveLibrary(Library<K, T> library)
         {
+            library.Unload();
             libraries.Remove(library);
         }
         #endregion
@@ -57,11 +80,11 @@ namespace Eventide4.Library
 
         */
 
-        Dictionary<K, T> list;
+        Dictionary<K, Book<T>> list;
 
         public Library()
         {
-            list = new Dictionary<K, T>();
+            list = new Dictionary<K, Book<T>>();
         }
 
         // This method checks if a texture has been loaded already, loads if necessary, then returns the reference.
@@ -69,30 +92,32 @@ namespace Eventide4.Library
         // --If a texture reference is found in another library, the reference is copied to the local library.
         public T Register(K key)
         {
-            T item;
+            Book<T> book;
 
             // Search for loaded texture in local library and return if found.
-            if (list.TryGetValue(key, out item)) return item;
+            if (list.TryGetValue(key, out book)) return book.Item;
 
             // Search for loaded texture in all texture libraries and copy reference to local library if found.
             foreach (Library<K, T> tLibrary in libraries)
             {
                 if (tLibrary == this) continue;
-                if (tLibrary.list.TryGetValue(key, out item))
+                if (tLibrary.list.TryGetValue(key, out book))
                 {
-                    list.Add(key, item);
-                    return item;
+                    list.Add(key, new Book<T>(book.Item, CopyState.copy));
+                    book.CopyState = CopyState.source;
+                    return book.Item;
                 }
             }
 
             // Otherwise, load the texture and store a reference in the local library.
-            item = Load(key);
-            list.Add(key, item);
-            return item;
+            book = new Book<T>(Load(key), CopyState.unique);
+            list.Add(key, book);
+            return book.Item;
         }
 
         protected virtual T Load(K key) { return default(T);  }
 
+        /*
         // Removes the specified texture from the local library.
         // --Should only be used if absolutely certain the texture isn't being used locally and won't be used again soon.
         // --Should only be used when large amounts of data should be released prematurely for performance reasons.
@@ -114,12 +139,47 @@ namespace Eventide4.Library
                 }
             }
         }
+        // Individual item removal cannot work well for assets loaded by a ContentManager.
+        // I guess I could create a ContentManger for each and every item... o_o
+        */
 
-        // Reset the local library, leaving dereferenced textures to be garbage collected.
-        public void Reset()
+        // Forcibly unload assets, and force external references to reload them in their own libraries.
+        public virtual void Unload()
         {
+            foreach (K key in list.Keys)
+            {
+                Unload(list[key].Item);
+                if (list[key].CopyState == CopyState.source)
+                {
+                    Book<T> book;
+                    Book<T> first = null;
+                    foreach (Library<K, T> tLibrary in libraries)
+                    {
+                        if (tLibrary == this) continue;
+                        if (tLibrary.list.TryGetValue(key, out book))
+                        {
+                            if (first == null)
+                            {
+                                // TODO: This forces unloaded content to reload, but this should only be necessary for
+                                //   ContentManager content. Other content can suffice with reference passing and not
+                                //   calling "Unload(item)" as above.
+                                first = book;
+                                book.Item = Load(key);
+                                book.CopyState = CopyState.unique;
+                            }
+                            else
+                            {
+                                first.CopyState = CopyState.source;
+                                book.Item = first.Item;
+                                book.CopyState = CopyState.copy;
+                            }
+                        }
+                    }
+                }
+            }
             list.Clear();
         }
+        protected virtual void Unload(T item) { }
         #endregion
     }
 }

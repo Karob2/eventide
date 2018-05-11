@@ -13,13 +13,21 @@ namespace Eventide4.Library
 {
     public class TextureLibrary : Library<string, Texture2D>
     {
-        protected override Texture2D Load(string path) {
+        ContentManager contentManager;
+
+        public TextureLibrary()
+        {
+            contentManager = GlobalServices.NewContentManager();
+        }
+
+        protected override Texture2D Load(string path)
+        {
             Texture2D texture;
 
-            string fullPath = GlobalServices.Content.RootDirectory + "/" + path;
+            string fullPath = contentManager.RootDirectory + "/" + path;
             if (File.Exists(fullPath + ".xnb"))
             {
-                texture = GlobalServices.Content.Load<Texture2D>(fullPath + ".xnb");
+                texture = contentManager.Load<Texture2D>(fullPath + ".xnb");
             }
             else
             {
@@ -32,6 +40,17 @@ namespace Eventide4.Library
                 fileStream.Dispose();
             }
             return texture;
+        }
+
+        protected override void Unload(Texture2D texture)
+        {
+            texture.Dispose();
+        }
+
+        public override void Unload()
+        {
+            contentManager.Unload();
+            base.Unload();
         }
     }
 }

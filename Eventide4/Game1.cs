@@ -49,6 +49,7 @@ namespace Eventide4
         /// </summary>
         protected override void LoadContent()
         {
+            // TODO: Load global content here (like menu textures, so they aren't loaded and unloaded throughout the game).
             Scene.Scene.Initialize();
         }
 
