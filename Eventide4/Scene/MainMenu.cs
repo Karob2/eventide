@@ -12,7 +12,6 @@ namespace Eventide4.Scene
 {
     public class MainMenu : Scene
     {
-        //SpriteBatch spriteBatch;
         //MenuGroup menu;
 
         public static readonly Color menuTextColor = new Color(0f, 0f, 0.5f);
@@ -23,43 +22,6 @@ namespace Eventide4.Scene
             Systems.Entity entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("demoball");
             entity.SetVelocity(20f, 10f);
             entityList.Add(entity);
-            /*
-            entityList.Add(Entity.Connect(
-                new ImageComponent("backdrops/cloudbg", new Vector2(0, 0)),
-                null
-                ));
-            entityList.Add(Entity.Connect(
-                new TextComponent(
-                    "UseKerning controls the layout\n" +
-                    "of the font. If this value is\n" +
-                    "true, kerning information will\n" +
-                    "be used when placing characters.",
-                    new Vector2(100, 100)),
-                null
-                ));
-
-            menu = new MenuGroup();
-            entityList.Add(Entity.Connect(
-                new TextComponent("Start", new Vector2(100, 300), menuTextColor),
-                new MenuComponent(menu)
-                ));
-            entityList.Add(Entity.Connect(
-                new TextComponent("Config", new Vector2(100, 350), menuTextColor),
-                new MenuComponent(menu)
-                ));
-            entityList.Add(Entity.Connect(
-                new TextComponent("Exit", new Vector2(100, 400), menuTextColor),
-                new MenuComponent(menu)
-                ));
-
-            /*
-            menu.Start();
-            entityList.Add(Entity.Connect(
-                new TextComponent("Start", new Vector2(100, 200)),
-                new MenuComponent()
-                ));
-            menu.End();
-            */
         }
         /*
         public new void Update()

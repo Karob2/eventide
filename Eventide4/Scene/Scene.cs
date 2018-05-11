@@ -61,7 +61,6 @@ namespace Eventide4.Scene
         public void Update()
         {
             physics.Update();
-            //physics.Synchronize();
         }
 
         public void Render()

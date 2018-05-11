@@ -20,16 +20,6 @@ namespace Eventide4
     /// </summary>
     public static class Program
     {
-//#if DEBUG
-        // Consider moving debug configuration to its own file or some other location.
-
-        //public static string contentDirectory = "C:/Projects/mono/Eventide4/assets/";
-        //public static string contentDirectory = "../../../../../Content/";
-        // TODO: This isn't good practice since the option isn't exposed to other coders.
-        // Consider using a relative symlink instead.
-        // Public variables are best avoided for potential multithreading issues.
-//#endif
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

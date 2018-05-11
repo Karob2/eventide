@@ -25,11 +25,6 @@ namespace Eventide4.Systems
         public void AddBody(BodyState body)
         {
             this.bodyList.Add(body);
-            /*
-            this.bodyList.Add(new Item(x, y, xVelocity, yVelocity));
-            this.owner.Add(owner);
-            this.spriteState.Add(spriteState);
-            */
         }
 
         public void RemoveBody(BodyState body)
@@ -53,18 +48,5 @@ namespace Eventide4.Systems
                 bodyList[i].Y += bodyList[i].YVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
             }
         }
-        /*
-        public void Synchronize()
-        {
-            for (int i = 0; i < bodyList.Count; i++)
-            {
-                if (bodyList[i].SpriteState != null)
-                {
-                    bodyList[i].SpriteState.X = bodyList[i].X;
-                    bodyList[i].SpriteState.Y = bodyList[i].Y;
-                }
-            }
-        }
-        */
     }
 }

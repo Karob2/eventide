@@ -23,14 +23,6 @@ namespace Eventide4.Library
 
         Texture2D texture;
 
-/*
-        public Sprite(float xCenter, float yCenter)
-        {
-            //TextureName = textureName;
-            XCenter = xCenter;
-            YCenter = yCenter;
-        }
-        */
         public Sprite()
         {
 

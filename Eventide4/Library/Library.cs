@@ -13,14 +13,6 @@ namespace Eventide4.Library
 {
     public class Library<K, T> where T : class
     {
-        /*
-        public static void Initialize()
-        {
-            GlobalServices.Content.RootDirectory = "Content";
-            Library<K, T>.Initialize();
-        }
-        */
-
         #region static
         /*
 

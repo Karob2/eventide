@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Eventide4.Systems
 {
-    // TODO: If alternative visual states aren't needed, perhaps SpriteState could be incorporated directly into the Entity class.
     public class SpriteState
     {
         float x, y;
