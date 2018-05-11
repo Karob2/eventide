@@ -13,6 +13,7 @@ namespace Eventide4
     public class Game1 : Game
     {
         GraphicsDeviceManager graphicsManager;
+        const string gameName = "Eventide";
         /*
         SpriteBatch spriteBatch;
         Texture2D ballTexture;
@@ -53,13 +54,7 @@ namespace Eventide4
             //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
             //ContentHandler.Initialize(this, graphicsManager);
-            GlobalServices.Initialize(this, graphicsManager);
-#if DEBUG
-            GlobalServices.Content.RootDirectory = "../../../../../Content";
-#else
-            GlobalServices.Content.RootDirectory = "Content";
-            // TODO: Need to add an app storage directory for save files and custom content.
-#endif
+            GlobalServices.Initialize(gameName, this, graphicsManager);
             Library.TextureLibrary.Initialize();
             Library.SpriteLibrary.Initialize();
             base.Initialize();
