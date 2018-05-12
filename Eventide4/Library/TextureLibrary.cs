@@ -24,7 +24,7 @@ namespace Eventide4.Library
         {
             Texture2D texture;
 
-            string fullPath = contentManager.RootDirectory + "/" + path;
+            string fullPath = GlobalServices.ContentDirectory + "/" + path;
             if (File.Exists(fullPath + ".xnb"))
             {
                 texture = contentManager.Load<Texture2D>(fullPath + ".xnb");

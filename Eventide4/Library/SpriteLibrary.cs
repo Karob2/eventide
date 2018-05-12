@@ -41,7 +41,7 @@ namespace Eventide4.Library
             sprite.XCenter = 64f;
             sprite.YCenter = 64f;
             XmlSerializer serializer = new XmlSerializer(typeof(Sprite));
-            FileStream fs = new FileStream(Program.contentDirectory + "spriteconfigs/test.xml", FileMode.Create);
+            FileStream fs = new FileStream(GlobalServices.ContentDirectory + "spriteconfigs/test.xml", FileMode.Create);
             TextWriter writer = new StreamWriter(fs, new UTF8Encoding());
             serializer.Serialize(writer, sprite);
             writer.Close();

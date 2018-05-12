@@ -16,6 +16,7 @@ namespace Eventide4
         public static string GameName { get; set; }
         public static string ContentDirectory { get; set; }
         public static string SaveDirectory { get; set; }
+        public static List<string> ExtensionDirectories { get; set; }
 
         public static Game Game { get; set; }
         public static GraphicsDeviceManager GraphicsManager { get; set; }
@@ -49,6 +50,29 @@ namespace Eventide4
             if (!File.Exists(configPath))
                 File.Create(configPath).Dispose();
             */
+            string extensionPath = Path.Combine(SaveDirectory, "Extensions");
+            Directory.CreateDirectory(extensionPath);
+            ExtensionDirectories = new List<string>();
+            // TODO: As a debug, all extensions are automatically loaded. I'm not certain what the final behaviour
+            //   should be.
+            foreach (string folder in Directory.GetDirectories(extensionPath))
+            {
+                //ExtensionDirectories.Add(Path.GetFileName(folder));
+                ExtensionDirectories.Add(folder);
+            }
+            // TODO: Make sure extension folder names only include _0-9A-Za-z
+/*
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine("Pathfinder test:");
+            System.Diagnostics.Debug.WriteLine(Pathfinder.Find("ball", "sprites", Pathfinder.FileType.image).Path);
+            System.Diagnostics.Debug.WriteLine(Pathfinder.Find("ball", "spriteconfigs", Pathfinder.FileType.xml).Path);
+            Pathfinder pf = Pathfinder.Find("kraken:/round/ball2", "sprites", Pathfinder.FileType.image);
+            System.Diagnostics.Debug.WriteLine(pf.Path);
+            System.Diagnostics.Debug.WriteLine(Pathfinder.Find("../rootball", "spriteconfigs", Pathfinder.FileType.xml, pf).Path);
+            System.Diagnostics.Debug.WriteLine(Pathfinder.Find("superball", "spriteconfigs", Pathfinder.FileType.xml, pf).Path);
+#endif
+*/
+
             Library.TextureLibrary.Initialize();
             Library.SpriteLibrary.Initialize();
 
