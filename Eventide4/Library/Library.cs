@@ -14,6 +14,9 @@ namespace Eventide4.Library
     // TODO: Perhaps I should make libraries only reference themselves and the global library.
     //   This would avoid some of the memory gymnastics, and excessive resource duplication can be avoided by
     //   loading multi-active-scene assets in the global library only.
+    // For max simplicity, I could make libraries only ever reference themselves. This would be best for performance.
+    //   But the current setup (autoreferencing among all libraries) is the easiest to use. I can just load any asset
+    //   into the current scene's libraries, and it'll automatically be moved as needed.
 
     public enum CopyState
     {
@@ -104,7 +107,7 @@ namespace Eventide4.Library
             foreach (Library<K, T> tLibrary in libraries)
             {
                 if (tLibrary == this) continue;
-                if (tLibrary.list.TryGetValue(key, out book))
+                if (tLibrary.list.TryGetValue(key, out book) && book.CopyState != CopyState.copy) // copy from the original only so that the state is set correctly
                 {
                     list.Add(key, new Book<T>(book.Item, CopyState.copy));
                     book.CopyState = CopyState.source;
@@ -152,6 +155,9 @@ namespace Eventide4.Library
             foreach (K key in list.Keys)
             {
                 Unload(list[key].Item);
+                // TODO: if CopyState == copy, then the original might need change from "source" to "unique".
+                //   Though the only penalty for keeping it as "source" is an unneccesary lookup check when the library
+                //   is unloaded.
                 if (list[key].CopyState == CopyState.source)
                 {
                     Book<T> book;
