@@ -38,6 +38,7 @@ namespace Eventide4
             graphicsManager.ApplyChanges();
 
             GlobalServices.Initialize(gameName, this, graphicsManager);
+            InputManager.Initialize();
             base.Initialize();
         }
 
