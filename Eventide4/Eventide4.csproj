@@ -62,6 +62,7 @@
     <Compile Include="Scene\MainMenu.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="GlobalServices.cs" />
+    <Compile Include="Systems\TextState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

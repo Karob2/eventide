@@ -25,6 +25,7 @@ namespace Eventide4
         public static GameTime GameTime { get; set; }
         public static Library.TextureLibrary GlobalTextures { get; set; }
         public static Library.SpriteLibrary GlobalSprites { get; set; }
+        public static Library.FontLibrary GlobalFonts { get; set; }
 
         public static void Initialize(string gameName, Game game, GraphicsDeviceManager graphicsManager)
         {
@@ -76,12 +77,16 @@ namespace Eventide4
 
             Library.TextureLibrary.Initialize();
             Library.SpriteLibrary.Initialize();
+            Library.FontLibrary.Initialize();
 
             GlobalTextures = new Library.TextureLibrary();
             Library.TextureLibrary.AddLibrary(GlobalTextures);
 
             GlobalSprites = new Library.SpriteLibrary(GlobalTextures);
             Library.SpriteLibrary.AddLibrary(GlobalSprites);
+
+            GlobalFonts = new Library.FontLibrary();
+            Library.FontLibrary.AddLibrary(GlobalFonts);
         }
 
         public static ContentManager NewContentManager()

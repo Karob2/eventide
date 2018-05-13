@@ -37,8 +37,8 @@ namespace Eventide4.Library
             reader.Close();
             //sprite.SetTexture(textureLibrary.Register("sprites/" + sprite.TextureName));
             Pathfinder.SetCurrentPath(pathfinder);
-            sprite.SetTexture(textureLibrary.Register(sprite.TextureName));
-            Pathfinder.ClearCurrentPath();
+            sprite.SetTexture(textureLibrary.Register(sprite.TextureFile));
+            Pathfinder.ClearCurrentPath(); // TODO: This develops loose ends too easily.
             /*
             // The below code can write an XML object to see what the XML structure should be like.
             Sprite sprite = new Sprite();

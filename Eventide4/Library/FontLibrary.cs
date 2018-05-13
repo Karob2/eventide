@@ -15,9 +15,32 @@ namespace Eventide4.Library
 {
     public class FontLibrary : Library<string, Font>
     {
+        ContentManager contentManager;
+
+        public FontLibrary()
+        {
+            contentManager = GlobalServices.GlobalContent; // For now, I'm considering all fonts global (permanent) content.
+        }
+
         protected override Font Load(string path)
         {
-            return null;
+            Pathfinder pathfinder = Pathfinder.Find(path, "fonts", Pathfinder.FileType.xml);
+            XDocument document = XDocument.Load(pathfinder.Path);
+            string xml = document.ToString();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Font));
+            StringReader reader = new StringReader(xml);
+            object obj = serializer.Deserialize(reader);
+            Font font = (Font)obj;
+            reader.Close();
+
+            Pathfinder.SetCurrentPath(pathfinder);
+            Pathfinder pathfinder2 = Pathfinder.Find(font.FontFile, "fonts", Pathfinder.FileType.xnb);
+            contentManager.RootDirectory = pathfinder2.ContentPath;
+            font.SetFont(contentManager.Load<SpriteFont>(pathfinder2.ContentFile));
+            Pathfinder.ClearCurrentPath();
+
+            return font;
         }
     }
 }

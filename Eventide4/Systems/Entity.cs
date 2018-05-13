@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +12,7 @@ namespace Eventide4.Systems
     public class Entity
     {
         SpriteState spriteState;
+        TextState textState;
         BodyState bodyState;
         Scene.Scene scene;
 
@@ -25,6 +29,10 @@ namespace Eventide4.Systems
             {
                 spriteState.AddBody(bodyState);
             }
+            if (textState != null)
+            {
+                textState.AddBody(bodyState);
+            }
             return this;
         }
 
@@ -39,6 +47,17 @@ namespace Eventide4.Systems
             return this;
         }
 
+        public Entity AddText(string fontpath, string message, float x = 0f, float y = 0f, Color color = default(Color), float scale = 1f)
+        {
+            Library.Font font = GlobalServices.GlobalFonts.Register(fontpath);
+            textState = new TextState(font, message, x, y, color, scale);
+            if (bodyState != null)
+            {
+                textState.AddBody(bodyState);
+            }
+            return this;
+        }
+
         public void SetVelocity(float xVelocity, float yVelocity)
         {
             bodyState.XVelocity = xVelocity;
@@ -47,7 +66,8 @@ namespace Eventide4.Systems
 
         public void Render()
         {
-            spriteState.Render();
+            if (spriteState != null) spriteState.Render();
+            if (textState != null) textState.Render();
         }
     }
 }

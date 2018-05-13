@@ -15,7 +15,7 @@ namespace Eventide4.Library
     public class Sprite
     {
         // TODO: TextureName may not be needed after the texture has been loaded.
-        public string TextureName { get; set; }
+        public string TextureFile { get; set; }
         public float XCenter { get; set; }
         public float YCenter { get; set; }
         //[XmlElement("Color")]
