@@ -49,6 +49,7 @@
     <Compile Include="Library\FontLibrary.cs" />
     <Compile Include="Systems\BodyState.cs" />
     <Compile Include="Systems\Entity.cs" />
+    <Compile Include="Systems\MenuGroup.cs" />
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Systems\SpriteState.cs" />
     <Compile Include="Game1.cs" />

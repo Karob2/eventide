@@ -18,9 +18,12 @@ namespace Eventide4.Systems
         BodyState bodyState;
         Scene.Scene scene;
 
+        public bool Visible { get; set; }
+
         public Entity(Scene.Scene scene)
         {
             this.scene = scene;
+            Visible = true;
         }
 
         public Entity AddBody(float x = 0f, float y = 0f)
@@ -68,6 +71,7 @@ namespace Eventide4.Systems
 
         public void Render()
         {
+            if (!Visible) return;
             if (spriteState != null) spriteState.Render();
             if (textState != null) textState.Render();
         }

@@ -69,7 +69,7 @@ namespace Eventide4.Scene
             GlobalServices.SpriteBatch.End();
         }
 
-        public void Update()
+        public virtual void Update()
         {
             physics.Update();
         }
