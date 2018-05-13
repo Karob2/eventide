@@ -28,12 +28,18 @@ namespace Eventide4
         FileType type;
         string ext;
         string path;
+        //public string _Namespace { get { return _namespace; } set { _namespace = value; } }
+        //public string Collection { get { return collection; } set { collection = value; } }
+        public string Ext { get { return ext; } set { ext = value; } }
         public string Path { get { return path; } set { path = value; } }
+
+        static Pathfinder currentPath;
 
         public Pathfinder()
         {
         }
 
+        /*
         public Pathfinder(string _namespace, string collection, List<string> sub, string file, Pathfinder.FileType type)
         {
             this._namespace = _namespace;
@@ -42,6 +48,17 @@ namespace Eventide4
             this.file = file;
             this.type = type;
             //this.ext = ext;
+        }
+        */
+
+        public static void SetCurrentPath(Pathfinder pathfinder)
+        {
+            currentPath = pathfinder;
+        }
+
+        public static void ClearCurrentPath()
+        {
+            currentPath = null;
         }
 
         void FindPath()
@@ -99,7 +116,8 @@ namespace Eventide4
         }
 
         // Example: Pathfinder.Find("Eventide:common/ball", "sprites", Pathfinder.image).Path
-        public static Pathfinder Find(string locator, string collection, FileType type, Pathfinder current = null, string ext = null)
+        //public static Pathfinder Find(string locator, string collection, FileType type, Pathfinder current = null, string ext = null)
+        public static Pathfinder Find(string locator, string collection, FileType type, string ext = null)
         {
             Pathfinder pathfinder = new Pathfinder();
             pathfinder.collection = collection;
@@ -107,15 +125,15 @@ namespace Eventide4
             pathfinder.ext = ext;
             //string currentNamespace;
             //List<string> currentPath;
-            if (current == null)
+            if (currentPath == null)
             {
                 pathfinder._namespace = "core";
                 pathfinder.sub = new List<string>();
             }
             else
             {
-                pathfinder._namespace = current._namespace;
-                pathfinder.sub = new List<string>(current.sub); // make a duplicate instead of copying the reference
+                pathfinder._namespace = currentPath._namespace;
+                pathfinder.sub = new List<string>(currentPath.sub); // make a duplicate instead of copying the reference
             }
 
             for (int i = 0; i < locator.Length; i++)

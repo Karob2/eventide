@@ -25,7 +25,9 @@ namespace Eventide4.Library
         protected override Sprite Load(string path)
         {
             // TODO: if spriteconfig does not exist, try to load image as a default basic sprite?
-            XDocument document = XDocument.Load(GlobalServices.ContentDirectory + "/" + "spriteconfigs/" + path + ".xml");
+            Pathfinder pathfinder = Pathfinder.Find(path, "sprites", Pathfinder.FileType.xml);
+            //XDocument document = XDocument.Load(GlobalServices.ContentDirectory + "/" + "spriteconfigs/" + path + ".xml");
+            XDocument document = XDocument.Load(pathfinder.Path);
             string xml = document.ToString();
             
             XmlSerializer serializer = new XmlSerializer(typeof(Sprite));
@@ -33,7 +35,10 @@ namespace Eventide4.Library
             object obj = serializer.Deserialize(reader);
             Sprite sprite = (Sprite)obj;
             reader.Close();
-            sprite.SetTexture(textureLibrary.Register("sprites/" + sprite.TextureName));
+            //sprite.SetTexture(textureLibrary.Register("sprites/" + sprite.TextureName));
+            Pathfinder.SetCurrentPath(pathfinder);
+            sprite.SetTexture(textureLibrary.Register(sprite.TextureName));
+            Pathfinder.ClearCurrentPath();
             /*
             // The below code can write an XML object to see what the XML structure should be like.
             Sprite sprite = new Sprite();

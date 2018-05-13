@@ -23,7 +23,18 @@ namespace Eventide4.Library
         protected override Texture2D Load(string path)
         {
             Texture2D texture;
-
+            Pathfinder pathfinder = Pathfinder.Find(path, "sprites", Pathfinder.FileType.image);
+            if (pathfinder.Ext.Equals("xnb"))
+            {
+                texture = contentManager.Load<Texture2D>(pathfinder.Path);
+            }
+            else
+            {
+                FileStream fileStream = new FileStream(pathfinder.Path, FileMode.Open);
+                texture = Texture2D.FromStream(GlobalServices.Game.GraphicsDevice, fileStream);
+                fileStream.Dispose();
+            }
+            /*
             string fullPath = GlobalServices.ContentDirectory + "/" + path;
             if (File.Exists(fullPath + ".xnb"))
             {
@@ -39,6 +50,7 @@ namespace Eventide4.Library
                 texture = Texture2D.FromStream(GlobalServices.Game.GraphicsDevice, fileStream);
                 fileStream.Dispose();
             }
+            */
             return texture;
         }
 
