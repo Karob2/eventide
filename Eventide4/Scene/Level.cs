@@ -8,5 +8,9 @@ namespace Eventide4.Scene
 {
     public class Level : Scene
     {
+        public Level() : base(true)
+        {
+
+        }
     }
 }

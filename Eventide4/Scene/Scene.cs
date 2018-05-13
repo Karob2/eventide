@@ -27,17 +27,28 @@ namespace Eventide4.Scene
         public Systems.Physics Physics { get { return physics; } }
         public Library.SpriteLibrary SpriteLibrary { get { return spriteLibrary; } }
 
-        public Scene()
+        bool privateLibraries;
+
+        public Scene(bool privateLibraries)
         {
+            this.privateLibraries = privateLibraries;
+
             entityList = new List<Systems.Entity>();
 
             physics = new Systems.Physics();
 
-            textureLibrary = new Library.TextureLibrary();
-            Library.TextureLibrary.AddLibrary(textureLibrary);
-
-            spriteLibrary = new Library.SpriteLibrary(textureLibrary);
-            Library.SpriteLibrary.AddLibrary(spriteLibrary);
+            if (privateLibraries)
+            {
+                textureLibrary = new Library.TextureLibrary();
+                Library.TextureLibrary.AddLibrary(textureLibrary);
+                spriteLibrary = new Library.SpriteLibrary(textureLibrary);
+                Library.SpriteLibrary.AddLibrary(spriteLibrary);
+            }
+            else
+            {
+                textureLibrary = GlobalServices.GlobalTextures;
+                spriteLibrary = GlobalServices.GlobalSprites;
+            }
         }
 
         public static void Initialize()
@@ -74,8 +85,11 @@ namespace Eventide4.Scene
         public void Unload()
         {
             // Content disposal is automatically handled within the libraries:
-            Library.TextureLibrary.RemoveLibrary(textureLibrary);
-            Library.SpriteLibrary.RemoveLibrary(spriteLibrary);
+            if (privateLibraries)
+            {
+                Library.TextureLibrary.RemoveLibrary(textureLibrary);
+                Library.SpriteLibrary.RemoveLibrary(spriteLibrary);
+            }
             // TODO: Should any other scene resources have forced disposal, or does dereferencing suffice?
         }
     }

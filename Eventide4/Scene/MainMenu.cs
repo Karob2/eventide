@@ -16,7 +16,7 @@ namespace Eventide4.Scene
 
         public static readonly Color menuTextColor = new Color(0f, 0f, 0.5f);
 
-        public MainMenu()
+        public MainMenu() : base(false)
         {
             sceneType = SceneType.Menu;
             Systems.Entity entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("ball");
