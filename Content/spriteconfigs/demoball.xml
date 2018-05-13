@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<XnaContent xmlns="Microsoft.Xna.Framework">
-    <TextureName>ball</TextureName>
-    <XCenter>64</XCenter>
-    <YCenter>64</YCenter>
-</XnaContent>
