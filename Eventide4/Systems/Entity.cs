@@ -11,6 +11,8 @@ namespace Eventide4.Systems
 {
     public class Entity
     {
+        // TODO: Add alternate method to add entity with known asset reference instead of looking up references from a path string.
+
         SpriteState spriteState;
         TextState textState;
         BodyState bodyState;

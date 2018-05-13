@@ -18,6 +18,7 @@ namespace Eventide4.Scene
 
         public MainMenu() : base(false)
         {
+            // TODO: Is it okay that assets can only be loaded into the active scene's libraries?
             sceneType = SceneType.Menu;
             Systems.Entity entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("ball");
             entity.SetVelocity(20f, 10f);

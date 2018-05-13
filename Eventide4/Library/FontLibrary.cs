@@ -11,6 +11,10 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 
+// TODO: Currently each Font object retains its own copy of the specified SpriteFont file.
+//   This is wasteful if there are multiple font objects using the same spritefont.
+//   Ideally, multiple font objects will not use the same spritefont.
+
 namespace Eventide4.Library
 {
     public class FontLibrary : Library<string, Font>
