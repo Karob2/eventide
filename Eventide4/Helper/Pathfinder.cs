@@ -71,7 +71,6 @@ namespace Eventide4
 
         void FindPath()
         {
-            // TODO: Make sure all variables only include _0-9A-Za-z
             string[] ext;
             switch (type)
             {
@@ -123,6 +122,7 @@ namespace Eventide4
                 }
             }
             path = null;
+            contentPath = null;
         }
 
         // Example: Pathfinder.Find("Eventide:common/ball", "sprites", Pathfinder.image).Path
@@ -146,28 +146,12 @@ namespace Eventide4
                 pathfinder.sub = new List<string>(currentPath.sub); // make a duplicate instead of copying the reference
             }
 
-            for (int i = 0; i < locator.Length; i++)
+            /*
+            if (!ValidateLocator(locator))
             {
-                if (locator[i] == '_') continue;
-                if (locator[i] == '/') continue;
-                if (locator[i] == ':') continue;
-                if (locator[i] < '0')
-                {
-                    // error
-                }
-                if (locator[i] <= '9') continue;
-                if (locator[i] < 'A')
-                {
-                    // error
-                }
-                if (locator[i] <= 'Z') continue;
-                if (locator[i] < 'a')
-                {
-                    // error
-                }
-                if (locator[i] <= 'z') continue;
                 // error
             }
+            */
 
             string[] parts = locator.Split(':');
             if (parts.Length == 2)
@@ -176,24 +160,20 @@ namespace Eventide4
             }
             else if (parts.Length != 1)
             {
-                // error
+                throw new Exception.InvalidFileException("Duplicate namespace marker ':' in '" + locator + "'.");
             }
             string[] parts2 = parts[parts.Length - 1].Split('/');
-            if (parts2.Length <= 0)
-            {
-                // error
-            }
             pathfinder.file = parts2[parts2.Length - 1];
-            if (parts2[0].Equals("")) pathfinder.sub = new List<string>();
             if (parts2.Length > 1)
             {
+                if (parts2[0].Equals("")) pathfinder.sub = new List<string>();
                 for (int i = 0; i < parts2.Length - 1; i++)
                 {
                     if (parts2[i].Equals(".."))
                     {
                         if (pathfinder.sub.Count < 1)
                         {
-                            // error
+                            throw new Exception.InvalidFileException("Path out of resource folder with excessive ':' in '" + locator + "'.");
                         }
                         pathfinder.sub.RemoveAt(pathfinder.sub.Count - 1);
                     }
@@ -209,8 +189,60 @@ namespace Eventide4
                 if (File.Exists(Path.Combine(GlobalServices.ContentDirectory, )))
             }
             */
+            if (!Validate(pathfinder._namespace))
+            {
+                throw new Exception.InvalidFileException("Invalid namespace character in '" + pathfinder._namespace + "' via '" + locator + "'.");
+            }
+            foreach (string str in pathfinder.sub)
+            {
+                if (!Validate(str))
+                {
+                    throw new Exception.InvalidFileException("Invalid path character in '" + str + "' via '" + locator + "'.");
+                }
+            }
+            if (!Validate(pathfinder.file))
+            {
+                throw new Exception.InvalidFileException("Invalid filename character in '" + pathfinder.file + "' via '" + locator + "'.");
+            }
             pathfinder.FindPath();
             return pathfinder;
+        }
+
+        /*
+        static bool ValidateLocator(string str)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == '_') continue;
+                if (str[i] == '/') continue;
+                if (str[i] == ':') continue;
+                if (str[i] < '0') return false;
+                if (str[i] <= '9') continue;
+                if (str[i] < 'A') return false;
+                if (str[i] <= 'Z') continue;
+                if (str[i] < 'a') return false;
+                if (str[i] <= 'z') continue;
+                return false;
+            }
+            return true;
+        }
+        */
+
+        static bool Validate(string str)
+        {
+            if (str.Equals("")) return false;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == '_') continue;
+                if (str[i] < '0') return false;
+                if (str[i] <= '9') continue;
+                if (str[i] < 'A') return false;
+                if (str[i] <= 'Z') continue;
+                if (str[i] < 'a') return false;
+                if (str[i] <= 'z') continue;
+                return false;
+            }
+            return true;
         }
     }
 }

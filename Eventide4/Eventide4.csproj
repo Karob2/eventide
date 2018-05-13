@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Exception\DebugException.cs" />
+    <Compile Include="Exception\InvalidFileException.cs" />
     <Compile Include="Helper\Pathfinder.cs" />
     <Compile Include="Library\Font.cs" />
     <Compile Include="Library\FontLibrary.cs" />
