@@ -19,12 +19,7 @@ namespace Eventide4
         {
             KeyConfig keyConfig = new KeyConfig();
             keyConfig.Default();
-
-            XmlSerializer serializer = new XmlSerializer(typeof(KeyConfig));
-            FileStream fs = new FileStream(Path.Combine(GlobalServices.SaveDirectory,"keyconfig.xml"), FileMode.Create);
-            TextWriter writer = new StreamWriter(fs, new UTF8Encoding());
-            serializer.Serialize(writer, keyConfig);
-            writer.Close();
+            XmlHelper<KeyConfig>.Save(Path.Combine(GlobalServices.SaveDirectory, "keyconfig.xml"), keyConfig);
         }
     }
 }

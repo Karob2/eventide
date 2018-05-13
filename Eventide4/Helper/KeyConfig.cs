@@ -33,8 +33,6 @@ namespace Eventide4
         }
     }
 
-    [Serializable]
-    [XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
     public class KeyConfig
     {
         public KeyPair Up { get; set; }

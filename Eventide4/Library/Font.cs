@@ -11,8 +11,8 @@ using System.Xml.Serialization;
 
 namespace Eventide4.Library
 {
-    [Serializable]
-    [XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
+    //[Serializable]
+    //[XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
     public class Font
     {
         public string FontFile { get; set; }

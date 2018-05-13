@@ -11,8 +11,8 @@ using System.Xml.Serialization;
 
 namespace Eventide4.Library
 {
-    [Serializable]
-    [XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
+    //[Serializable]
+    //[XmlRootAttribute("XnaContent", Namespace = "Microsoft.Xna.Framework", IsNullable = false)]
     public class Sprite
     {
         // TODO: TextureName may not be needed after the texture has been loaded.
