@@ -26,7 +26,9 @@ namespace Eventide4.Library
             Pathfinder pathfinder = Pathfinder.Find(path, "sprites", Pathfinder.FileType.image);
             if (pathfinder.Ext.Equals("xnb"))
             {
-                texture = contentManager.Load<Texture2D>(pathfinder.Path);
+                contentManager.RootDirectory = pathfinder.ContentPath;
+                texture = contentManager.Load<Texture2D>(pathfinder.ContentFile);
+                //texture = contentManager.Load<Texture2D>("ball");
             }
             else
             {

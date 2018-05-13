@@ -28,10 +28,13 @@ namespace Eventide4
         FileType type;
         string ext;
         string path;
+        string contentPath;
         //public string _Namespace { get { return _namespace; } set { _namespace = value; } }
         //public string Collection { get { return collection; } set { collection = value; } }
         public string Ext { get { return ext; } set { ext = value; } }
         public string Path { get { return path; } set { path = value; } }
+        public string ContentFile { get { return file; } set { file = value; } }
+        public string ContentPath { get { return contentPath; } set { contentPath = value; } }
 
         static Pathfinder currentPath;
 
@@ -50,6 +53,11 @@ namespace Eventide4
             //this.ext = ext;
         }
         */
+
+        public string GetContentPath()
+        {
+            return System.IO.Path.GetFullPath(System.IO.Path.Combine());
+        }
 
         public static void SetCurrentPath(Pathfinder pathfinder)
         {
@@ -82,12 +90,12 @@ namespace Eventide4
             }
             string path1;
             string path2;
-            path1 = System.IO.Path.Combine(_namespace, collection, System.IO.Path.Combine(sub.ToArray()), file);
+            path1 = System.IO.Path.Combine(_namespace, collection, System.IO.Path.Combine(sub.ToArray()));
             foreach (string folder in GlobalServices.ExtensionDirectories)
             {
                 for (int i = 0; i < ext.Length; i++)
                 {
-                    path2 = System.IO.Path.Combine(folder, path1 + "." + ext[i]);
+                    path2 = System.IO.Path.Combine(folder, path1, file + "." + ext[i]);
 /*#if DEBUG
                     System.Diagnostics.Debug.WriteLine("Searching " + path2);
 #endif*/
@@ -95,13 +103,14 @@ namespace Eventide4
                     {
                         this.ext = ext[i];
                         path = path2;
+                        contentPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(folder, path1));
                         return;
                     }
                 }
             }
             for (int i = 0; i < ext.Length; i++)
             {
-                path2 = System.IO.Path.Combine(GlobalServices.ContentDirectory, path1 + "." + ext[i]);
+                path2 = System.IO.Path.Combine(GlobalServices.ContentDirectory, path1, file + "." + ext[i]);
 /*#if DEBUG
                 System.Diagnostics.Debug.WriteLine("Searching " + path2);
 #endif*/
@@ -109,6 +118,7 @@ namespace Eventide4
                 {
                     this.ext = ext[i];
                     path = path2;
+                    contentPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(GlobalServices.ContentDirectory, path1));
                     return;
                 }
             }

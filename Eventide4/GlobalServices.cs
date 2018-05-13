@@ -35,11 +35,12 @@ namespace Eventide4
             SpriteBatch = new SpriteBatch(game.GraphicsDevice);
 
 #if DEBUG
-            ContentDirectory = "../../../../../Content";
+            ContentDirectory = Path.Combine("..","..","..","..","..","Content");
 #else
             ContentDirectory = "Content";
 #endif
-            GlobalContent.RootDirectory = ContentDirectory;
+            //GlobalContent.RootDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), ContentDirectory);
+            //System.Diagnostics.Debug.WriteLine(Path.GetFullPath(ContentDirectory));
             // TODO: How does this perform on linux? (And any other target OS.)
             SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", gameName);
             // Ugh, should I wash input and output so that backslashes in custom content don't break linux?
