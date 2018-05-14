@@ -44,10 +44,10 @@
   <ItemGroup>
     <Compile Include="Exception\DebugException.cs" />
     <Compile Include="Exception\InvalidFileException.cs" />
-    <Compile Include="Helper\Input\KeyConfig.cs" />
-    <Compile Include="Helper\Input\KeyPair.cs" />
-    <Compile Include="Helper\Pathfinder.cs" />
-    <Compile Include="Helper\XmlHelper.cs" />
+    <Compile Include="Input\KeyConfig.cs" />
+    <Compile Include="Input\KeyPair.cs" />
+    <Compile Include="File\Pathfinder.cs" />
+    <Compile Include="File\XmlHelper.cs" />
     <Compile Include="Library\Font.cs" />
     <Compile Include="Library\FontLibrary.cs" />
     <Compile Include="Systems\BodyState.cs" />
@@ -65,7 +65,7 @@
     <Compile Include="Scene\Level.cs" />
     <Compile Include="Scene\MainMenu.cs" />
     <Compile Include="Scene\Scene.cs" />
-    <Compile Include="Helper\GlobalServices.cs" />
+    <Compile Include="GlobalServices.cs" />
     <Compile Include="Systems\TextState.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eventide4.Exception
+namespace Eventide4
 {
     //usage: throw new DebugException(string);
 

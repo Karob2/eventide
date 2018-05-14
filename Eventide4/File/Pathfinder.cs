@@ -160,7 +160,7 @@ namespace Eventide4
             }
             else if (parts.Length != 1)
             {
-                throw new Exception.InvalidFileException("Duplicate namespace marker ':' in '" + locator + "'.");
+                throw new InvalidFileException("Duplicate namespace marker ':' in '" + locator + "'.");
             }
             string[] parts2 = parts[parts.Length - 1].Split('/');
             pathfinder.file = parts2[parts2.Length - 1];
@@ -173,7 +173,7 @@ namespace Eventide4
                     {
                         if (pathfinder.sub.Count < 1)
                         {
-                            throw new Exception.InvalidFileException("Path out of resource folder with excessive ':' in '" + locator + "'.");
+                            throw new InvalidFileException("Path out of resource folder with excessive ':' in '" + locator + "'.");
                         }
                         pathfinder.sub.RemoveAt(pathfinder.sub.Count - 1);
                     }
@@ -191,18 +191,18 @@ namespace Eventide4
             */
             if (!Validate(pathfinder._namespace))
             {
-                throw new Exception.InvalidFileException("Invalid namespace character in '" + pathfinder._namespace + "' via '" + locator + "'.");
+                throw new InvalidFileException("Invalid namespace character in '" + pathfinder._namespace + "' via '" + locator + "'.");
             }
             foreach (string str in pathfinder.sub)
             {
                 if (!Validate(str))
                 {
-                    throw new Exception.InvalidFileException("Invalid path character in '" + str + "' via '" + locator + "'.");
+                    throw new InvalidFileException("Invalid path character in '" + str + "' via '" + locator + "'.");
                 }
             }
             if (!Validate(pathfinder.file))
             {
-                throw new Exception.InvalidFileException("Invalid filename character in '" + pathfinder.file + "' via '" + locator + "'.");
+                throw new InvalidFileException("Invalid filename character in '" + pathfinder.file + "' via '" + locator + "'.");
             }
             pathfinder.FindPath();
             return pathfinder;

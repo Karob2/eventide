@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Eventide4.Exception
+namespace Eventide4
 {
     public class InvalidFileException : System.Exception
     {
