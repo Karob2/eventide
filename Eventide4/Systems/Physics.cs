@@ -44,8 +44,8 @@ namespace Eventide4.Systems
         {
             for (int i = 0; i < bodyList.Count; i++)
             {
-                bodyList[i].X += bodyList[i].XVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
-                bodyList[i].Y += bodyList[i].YVelocity * (float)GlobalServices.GameTime.ElapsedGameTime.TotalSeconds;
+                bodyList[i].X += bodyList[i].XVelocity * GlobalServices.DeltaSeconds;
+                bodyList[i].Y += bodyList[i].YVelocity * GlobalServices.DeltaSeconds;
             }
         }
     }

@@ -38,7 +38,6 @@ namespace Eventide4
             graphicsManager.ApplyChanges();
 
             GlobalServices.Initialize(gameName, this, graphicsManager);
-            InputManager.Initialize();
             base.Initialize();
         }
 
@@ -68,10 +67,23 @@ namespace Eventide4
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            // I'm not sure if the Alt+F4 catch is necessary because I don't know if the inhertent Alt+F4 is present in
+            //   all target platforms.
+            if ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt))
+                && Keyboard.GetState().IsKeyDown(Keys.F4))
                 Exit();
+#if DEBUG
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+#endif
 
-            GlobalServices.GameTime = gameTime;
+            //GlobalServices.GameTime = gameTime;
+            GlobalServices.DeltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            GlobalServices.KeyConfig.Update();
+            // TODO: Not all scenes and situations require the repeaters to be updated. Consider moving this into Scene classes.
+            //   And when repeat updating is started again, run Reset() first to clear the repeat state.
+            GlobalServices.KeyConfig.UpdateRepeaters();
             Scene.Scene.UpdateScene();
 
             base.Update(gameTime);

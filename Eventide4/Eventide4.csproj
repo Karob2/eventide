@@ -44,8 +44,8 @@
   <ItemGroup>
     <Compile Include="Exception\DebugException.cs" />
     <Compile Include="Exception\InvalidFileException.cs" />
-    <Compile Include="Helper\InputManager.cs" />
-    <Compile Include="Helper\KeyConfig.cs" />
+    <Compile Include="Helper\Input\KeyConfig.cs" />
+    <Compile Include="Helper\Input\KeyPair.cs" />
     <Compile Include="Helper\Pathfinder.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
     <Compile Include="Library\Font.cs" />

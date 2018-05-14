@@ -22,10 +22,12 @@ namespace Eventide4
         public static GraphicsDeviceManager GraphicsManager { get; set; }
         public static ContentManager GlobalContent { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
-        public static GameTime GameTime { get; set; }
+        //public static GameTime GameTime { get; set; }
+        public static float DeltaSeconds { get; set; }
         public static Library.TextureLibrary GlobalTextures { get; set; }
         public static Library.SpriteLibrary GlobalSprites { get; set; }
         public static Library.FontLibrary GlobalFonts { get; set; }
+        public static KeyConfig KeyConfig { get; set; }
 
         public static void Initialize(string gameName, Game game, GraphicsDeviceManager graphicsManager)
         {
@@ -87,6 +89,18 @@ namespace Eventide4
 
             GlobalFonts = new Library.FontLibrary();
             Library.FontLibrary.AddLibrary(GlobalFonts);
+
+            string path = Path.Combine(SaveDirectory, "keyconfig.xml");
+            if (File.Exists(path))
+            {
+                KeyConfig = XmlHelper<KeyConfig>.Load(path);
+            }
+            else
+            {
+                KeyConfig = new KeyConfig();
+                XmlHelper<KeyConfig>.Save(path, KeyConfig);
+            }
+            KeyConfig.FinalizeKeys();
         }
 
         public static ContentManager NewContentManager()
