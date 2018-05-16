@@ -35,6 +35,15 @@ namespace Eventide4.Systems
             Active = true;
         }
 
+        // Constructor to automatically add newly created entity to parent scene's entity list.
+        public Entity(Scene.Scene scene, List<Entity> entityList)
+        {
+            this.scene = scene;
+            Visible = true;
+            Active = true;
+            entityList.Add(this);
+        }
+
         public Entity AddMenuControl(MenuControl menuControl)
         {
             this.menuControl = menuControl;

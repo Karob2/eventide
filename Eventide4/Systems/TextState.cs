@@ -18,6 +18,7 @@ namespace Eventide4.Systems
         public Boolean Visible { get; set; }
         Library.Font font;
         BodyState body;
+        public Color Color { get { return color; } set { color = value; } }
 
         public string Message { get { return message; } set { message = value; } }
         //public float X { get { return x; } set { x = value; } }

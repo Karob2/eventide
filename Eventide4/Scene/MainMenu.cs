@@ -22,31 +22,38 @@ namespace Eventide4.Scene
         {
             // TODO: Is it okay that assets can only be loaded into the active scene's libraries?
             sceneType = SceneType.Menu;
-            menu = new Systems.MenuGroup();
 
             Systems.Entity entity;
 
-            entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("ball");
+            entity = new Systems.Entity(this, entityList).AddBody(100f, 100f).AddSprite("ball");
             entity.SetVelocity(20f, 10f);
-            entityList.Add(entity);
-            menu.Add(entity);
 
-            entity = new Systems.Entity(this).AddBody(100f, 100f).AddText("default", "Run", 100f, 100f, menuTextColor, 1f);
-            entity.SetVelocity(20f, 0f);
-            entityList.Add(entity);
-            menu.Add(entity);
-
-            entity = new Systems.Entity(this).AddText("default", "Stop", 100f, 300f, Color.Red, 2f);
-            entityList.Add(entity);
-            menu.Add(entity);
-
+            entity = new Systems.Entity(this, entityList).AddText("default", "N/A", 5f, 5f, Color.Cyan, 1f);
             stop1 = entity;
-            message = new StringBuilder();
+            message = new StringBuilder("Type: ");
+
+            //menu = new Systems.MenuGroup(Systems.MenuOrder.vertical, MenuSelect, MenuDeselect);
+            menu = new Systems.MenuGroup();
+            menu.Add(new Systems.Entity(this, entityList).AddText("default", "Start", 100f, 100f, menuTextColor, 1f));
+            menu.Add(new Systems.Entity(this, entityList).AddText("default", "Config", 100f, 200f, menuTextColor, 1f));
+            menu.Add(new Systems.Entity(this, entityList).AddText("default", "Exit", 100f, 300f, menuTextColor, 1f));
+            menu.SetSelect(MenuSelect);
+            menu.SetDeselect(MenuDeselect);
+            menu.Refresh();
 
             // TODO: Consider moving this to the base Scene library, and Start() or Stop via a flag in the constructor.
             //   Though it might need to be started and stopped within certain scenes? Unless all typing popups are
             //   handled as scenes of their own.
             GlobalServices.TextHandler.Start();
+        }
+
+        public void MenuSelect(Systems.Entity entity)
+        {
+            entity.TextState.Color = Color.White;
+        }
+        public void MenuDeselect(Systems.Entity entity)
+        {
+            entity.TextState.Color = menuTextColor;
         }
 
         public override void UpdateControl()

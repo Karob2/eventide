@@ -22,10 +22,21 @@ namespace Eventide4.Systems
         Entity current;
         MenuOrder menuOrder;
 
+        //Delegate<Entity>.Method defaultSelect, defaultDeselect;
+
         public MenuGroup(MenuOrder menuOrder = MenuOrder.vertical)
+        /*
+        public MenuGroup(
+            MenuOrder menuOrder = MenuOrder.vertical,
+            Delegate<Entity>.Method defaultSelect = null,
+            Delegate<Entity>.Method defaultDeselect = null
+            )
+        */
         {
             menuList = new List<Entity>();
             this.menuOrder = menuOrder;
+            //if (defaultSelect != null) this.defaultSelect = defaultSelect;
+            //if (defaultDeselect != null) this.defaultDeselect = defaultDeselect;
         }
 
         public void Add(Entity entity)
@@ -45,8 +56,10 @@ namespace Eventide4.Systems
                 entity.MenuControl.SetAction(KeyType.MenuLeft, Previous);
                 entity.MenuControl.SetAction(KeyType.MenuRight, Next);
             }
-            entity.MenuControl.SetSelect(Select);
-            entity.MenuControl.SetDeselect(Deselect);
+            //entity.MenuControl.SetSelect(Select);
+            //entity.MenuControl.SetDeselect(Deselect);
+            //if (defaultSelect != null) entity.MenuControl.SetSelect(defaultSelect);
+            //if (defaultDeselect != null) entity.MenuControl.SetDeselect(defaultDeselect);
 
             // Select first menu item by default.
             if (menuList.Count == 1)
@@ -60,6 +73,7 @@ namespace Eventide4.Systems
             }
         }
 
+        /*
         // Placeholder functions for handling visual state changes of menu items.
         public void Select(Entity entity)
         {
@@ -68,6 +82,47 @@ namespace Eventide4.Systems
         public void Deselect(Entity entity)
         {
             entity.Visible = false;
+        }
+        */
+
+        public void SetSelect(Delegate<Entity>.Method method)
+        {
+            foreach (Entity entity in menuList)
+            {
+                entity.MenuControl.SetSelect(method);
+            }
+        }
+        public void SetSoftSelect(Delegate<Entity>.Method method)
+        {
+            foreach (Entity entity in menuList)
+            {
+                entity.MenuControl.SetSoftSelect(method);
+            }
+        }
+        public void SetDeselect(Delegate<Entity>.Method method)
+        {
+            foreach (Entity entity in menuList)
+            {
+                entity.MenuControl.SetDeselect(method);
+            }
+        }
+        public void SetSoftDeselect(Delegate<Entity>.Method method)
+        {
+            foreach (Entity entity in menuList)
+            {
+                entity.MenuControl.SetSoftDeselect(method);
+            }
+        }
+
+        public void Refresh()
+        {
+            foreach (Entity entity in menuList)
+            {
+                if (entity == current)
+                    entity.MenuControl.SoftSelect();
+                else
+                    entity.MenuControl.SoftDeselect();
+            }
         }
 
         public void Next(Entity entity = null)
