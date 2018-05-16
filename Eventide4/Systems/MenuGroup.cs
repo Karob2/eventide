@@ -16,78 +16,82 @@ namespace Eventide4.Systems
         horizontal
     }
 
-    public class MenuItem
-    {
-        public Entity EntityDefault { get; set; }
-        public Entity EntitySelected { get; set; }
-
-        public MenuItem(Entity entityDefault, Entity entitySelected)
-        {
-            EntityDefault = entityDefault;
-            EntitySelected = entitySelected;
-        }
-    }
-
     public class MenuGroup
     {
-        List<MenuItem> menuList;
-        MenuItem current;
+        List<Entity> menuList;
+        Entity current;
         MenuOrder menuOrder;
 
         public MenuGroup(MenuOrder menuOrder = MenuOrder.vertical)
         {
-            menuList = new List<MenuItem>();
+            menuList = new List<Entity>();
             this.menuOrder = menuOrder;
         }
 
-        public void Add(Entity entityDefault, Entity entitySelected)
+        public void Add(Entity entity)
         {
-            MenuItem menuItem = new MenuItem(entityDefault, entitySelected);
-            if (menuList.Count == 0) current = menuItem;
-            menuList.Add(menuItem);
-            UpdateSelected();
+            menuList.Add(entity);
+            if (entity.MenuControl == null)
+            {
+                entity.AddMenuControl(new MenuControl(entity));
+            }
+            if (menuOrder == MenuOrder.vertical)
+            {
+                entity.MenuControl.SetAction(KeyType.MenuUp, Previous);
+                entity.MenuControl.SetAction(KeyType.MenuDown, Next);
+            }
+            else
+            {
+                entity.MenuControl.SetAction(KeyType.MenuLeft, Previous);
+                entity.MenuControl.SetAction(KeyType.MenuRight, Next);
+            }
+            entity.MenuControl.SetSelect(Select);
+            entity.MenuControl.SetDeselect(Deselect);
+
+            // Select first menu item by default.
+            if (menuList.Count == 1)
+            {
+                current = entity;
+                entity.MenuControl.SoftSelect();
+            }
+            else
+            {
+                entity.MenuControl.SoftDeselect();
+            }
         }
 
-        public void Update()
+        // Placeholder functions for handling visual state changes of menu items.
+        public void Select(Entity entity)
         {
-            if (menuOrder == MenuOrder.vertical && GlobalServices.KeyHandler.Ticked(KeyType.Down)
-                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyHandler.Ticked(KeyType.Right))
-            {
-                int index = menuList.IndexOf(current);
-                if (index == menuList.Count - 1)
-                    index = 0;
-                else
-                    index = index + 1;
-                current = menuList[index];
-            }
-            else if (menuOrder == MenuOrder.vertical && GlobalServices.KeyHandler.Ticked(KeyType.Up)
-                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyHandler.Ticked(KeyType.Left))
-            {
-                int index = menuList.IndexOf(current);
-                if (index == 0)
-                    index = menuList.Count - 1;
-                else
-                    index = index - 1;
-                current = menuList[index];
-            }
-            UpdateSelected();
+            entity.Visible = true;
+        }
+        public void Deselect(Entity entity)
+        {
+            entity.Visible = false;
         }
 
-        void UpdateSelected()
+        public void Next(Entity entity = null)
         {
-            foreach (MenuItem menuItem in menuList)
-            {
-                if (menuItem == current)
-                {
-                    menuItem.EntityDefault.Visible = false;
-                    menuItem.EntitySelected.Visible = true;
-                }
-                else
-                {
-                    menuItem.EntityDefault.Visible = true;
-                    menuItem.EntitySelected.Visible = false;
-                }
-            }
+            current.MenuControl.Deselect();
+            int index = menuList.IndexOf(current);
+            if (index == menuList.Count - 1)
+                index = 0;
+            else
+                index = index + 1;
+            current = menuList[index];
+            current.MenuControl.Select();
+        }
+
+        public void Previous(Entity entity = null)
+        {
+            current.MenuControl.Deselect();
+            int index = menuList.IndexOf(current);
+            if (index == 0)
+                index = menuList.Count - 1;
+            else
+                index = index - 1;
+            current = menuList[index];
+            current.MenuControl.Select();
         }
     }
 }

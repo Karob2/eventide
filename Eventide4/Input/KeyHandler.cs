@@ -18,20 +18,21 @@ namespace Eventide4
         Down,
         Left,
         Right,
-        Select,
-        Back,
+        Action1,
+        Action2,
         MenuUp,
         MenuDown,
         MenuLeft,
         MenuRight,
-        MenuSelect,
-        MenuBack
+        MenuConfirm,
+        MenuCancel
     }
 
     public class KeyHandler
     {
         // TODO: Only update repeaters for menu keys.
         // TODO: Only run repeater updates when needed.
+        // TODO: Only update game/menu key status when needed.
 
         KeyPair[] keyList;
 
@@ -56,15 +57,15 @@ namespace Eventide4
             Set(KeyType.Down, Keys.Down, Keys.S);
             Set(KeyType.Left, Keys.Left, Keys.A);
             Set(KeyType.Right, Keys.Right, Keys.D);
-            Set(KeyType.Select, Keys.Enter, Keys.J);
-            Set(KeyType.Back, Keys.Escape, Keys.K);
-            // Menu/typing controls that shouldn't be configurable:
-            Set(KeyType.MenuUp, Keys.Up);
-            Set(KeyType.MenuDown, Keys.Down);
-            Set(KeyType.MenuLeft, Keys.Left);
-            Set(KeyType.MenuRight, Keys.Right);
-            Set(KeyType.MenuSelect, Keys.Enter);
-            Set(KeyType.MenuBack, Keys.Escape);
+            Set(KeyType.Action1, Keys.Enter, Keys.J);
+            Set(KeyType.Action2, Keys.Escape, Keys.K);
+            // Menu controls that shouldn't be configurable in-game (at least the first values):
+            Set(KeyType.MenuUp, Keys.Up, Keys.W);
+            Set(KeyType.MenuDown, Keys.Down, Keys.S);
+            Set(KeyType.MenuLeft, Keys.Left, Keys.A);
+            Set(KeyType.MenuRight, Keys.Right, Keys.D);
+            Set(KeyType.MenuConfirm, Keys.Enter, Keys.J);
+            Set(KeyType.MenuCancel, Keys.Escape, Keys.K);
             Reset();
         }
 
@@ -119,6 +120,11 @@ namespace Eventide4
             }
         }
 
+        // Valid methods:
+        // - KeyHandler.Held(KeyType.Up)
+        // - KeyHandler.KeyList[KeyType.Up].Held()
+        // Old, defunct method:
+        // - KeyHandler.Up.Held()
         public bool Held(KeyType keyType)
         {
             return keyList[(int)keyType].Held();

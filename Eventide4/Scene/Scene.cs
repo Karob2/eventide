@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace Eventide4.Scene
 {
+    public class MethodQueueItem : MethodItem<Systems.Entity>
+    {
+        public MethodQueueItem(Systems.Entity entity, Delegate<Systems.Entity>.Method method) : base(entity, method) { }
+    }
+
     public class Scene
     {
         public enum SceneType
@@ -17,6 +22,7 @@ namespace Eventide4.Scene
             Level
         }
         static Scene activeScene;
+        //public static Scene ActiveScene { get { return activeScene; } }
 
         protected SceneType sceneType;
         protected List<Systems.Entity> entityList;
@@ -28,6 +34,8 @@ namespace Eventide4.Scene
         public Library.SpriteLibrary SpriteLibrary { get { return spriteLibrary; } }
 
         bool privateLibraries;
+
+        List<MethodQueueItem> methodQueue { get; set; }
 
         public Scene(bool privateLibraries)
         {
@@ -50,6 +58,8 @@ namespace Eventide4.Scene
                 spriteLibrary = GlobalServices.GlobalSprites;
             }
 
+            methodQueue = new List<MethodQueueItem>();
+
             GlobalServices.TextHandler.Stop();
         }
 
@@ -58,9 +68,14 @@ namespace Eventide4.Scene
             activeScene = new MainMenu();
         }
 
-        public static void UpdateScene()
+        public static void UpdateSceneControl()
         {
-            activeScene.Update();
+            activeScene.UpdateControl();
+        }
+
+        public static void UpdateScenePhysics()
+        {
+            activeScene.UpdatePhysics();
         }
 
         public static void RenderScene()
@@ -71,7 +86,25 @@ namespace Eventide4.Scene
             GlobalServices.SpriteBatch.End();
         }
 
-        public virtual void Update()
+        public virtual void UpdateControl()
+        {
+            foreach (Systems.Entity entity in entityList)
+            {
+                entity.UpdateControl();
+            }
+            foreach (MethodQueueItem q in methodQueue)
+            {
+                q.Invoke();
+            }
+            methodQueue.Clear();
+        }
+
+        public void QueueMethod(Systems.Entity item, Delegate<Systems.Entity>.Method method)
+        {
+            methodQueue.Add(new MethodQueueItem(item, method));
+        }
+
+        public virtual void UpdatePhysics()
         {
             physics.Update();
         }

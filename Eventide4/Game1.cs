@@ -84,7 +84,8 @@ namespace Eventide4
             // TODO: Not all scenes and situations require the repeaters to be updated. Consider moving this into Scene classes.
             //   And when repeat updating is started again, run Reset() first to clear the repeat state.
             //GlobalServices.KeyConfig.UpdateRepeaters();
-            Scene.Scene.UpdateScene();
+            Scene.Scene.UpdateSceneControl();
+            Scene.Scene.UpdateScenePhysics();
 
             base.Update(gameTime);
         }

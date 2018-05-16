@@ -13,28 +13,39 @@ namespace Eventide4.Systems
     {
         // TODO: Add alternate method to add entity with known asset reference instead of looking up references from a path string.
 
+        MenuControl menuControl;
         SpriteState spriteState;
         TextState textState;
         BodyState bodyState;
         Scene.Scene scene;
 
-        /*
+        public MenuControl MenuControl { get { return menuControl; } }
         public TextState TextState { get { return textState; } }
         public BodyState BodyState { get { return bodyState; } }
-        */
+        public Scene.Scene Scene { get { return scene; } }
 
         public bool Visible { get; set; }
+        public bool Active { get; set; }
+        //public bool Selected { get; set; }
 
         public Entity(Scene.Scene scene)
         {
             this.scene = scene;
             Visible = true;
+            Active = true;
+        }
+
+        public Entity AddMenuControl(MenuControl menuControl)
+        {
+            this.menuControl = menuControl;
+            return this;
         }
 
         public Entity AddBody(float x = 0f, float y = 0f)
         {
             bodyState = new BodyState(x, y);
             scene.Physics.AddBody(bodyState);
+            // TODO: Should I replace this clunky effeciency-focused linking with accessing each other through Entity/parent?
             if (spriteState != null)
             {
                 spriteState.AddBody(bodyState);
@@ -80,6 +91,12 @@ namespace Eventide4.Systems
         {
             bodyState.XVelocity = xVelocity;
             bodyState.YVelocity = yVelocity;
+        }
+
+        public void UpdateControl()
+        {
+            if (!Active) return;
+            if (menuControl != null) menuControl.Update();
         }
 
         public void Render()

@@ -24,29 +24,21 @@ namespace Eventide4.Scene
             sceneType = SceneType.Menu;
             menu = new Systems.MenuGroup();
 
-            Systems.Entity entity, entity2;
+            Systems.Entity entity;
 
             entity = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("ball");
             entity.SetVelocity(20f, 10f);
             entityList.Add(entity);
-            entity2 = new Systems.Entity(this).AddBody(100f, 100f).AddSprite("ball_shift");
-            entity2.SetVelocity(20f, 10f);
-            entityList.Add(entity2);
-            menu.Add(entity, entity2);
+            menu.Add(entity);
 
             entity = new Systems.Entity(this).AddBody(100f, 100f).AddText("default", "Run", 100f, 100f, menuTextColor, 1f);
             entity.SetVelocity(20f, 0f);
             entityList.Add(entity);
-            entity2 = new Systems.Entity(this).AddBody(100f, 100f).AddText("default", "Run", 100f, 100f, Color.White, 1f);
-            entity2.SetVelocity(20f, 0f);
-            entityList.Add(entity2);
-            menu.Add(entity, entity2);
+            menu.Add(entity);
 
             entity = new Systems.Entity(this).AddText("default", "Stop", 100f, 300f, Color.Red, 2f);
             entityList.Add(entity);
-            entity2 = new Systems.Entity(this).AddText("default", "Stop", 100f, 300f, Color.White, 2f);
-            entityList.Add(entity2);
-            menu.Add(entity, entity2);
+            menu.Add(entity);
 
             stop1 = entity;
             message = new StringBuilder();
@@ -57,11 +49,11 @@ namespace Eventide4.Scene
             GlobalServices.TextHandler.Start();
         }
 
-        public override void Update()
+        public override void UpdateControl()
         {
             GlobalServices.TextHandler.DumpBuffer();
-            base.Update();
-            menu.Update();
+            base.UpdateControl();
+            //menu.Update();
 
             // TODO: Implement text input as a control that can be attached to an entity?
             //   Start() and Stop() TextHandler from within the entity?

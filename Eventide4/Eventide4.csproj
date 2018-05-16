@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Exception\DebugException.cs" />
     <Compile Include="Exception\InvalidFileException.cs" />
+    <Compile Include="Helper\Delegate.cs" />
     <Compile Include="Input\KeyConfig.cs" />
     <Compile Include="Input\KeyHandler.cs" />
     <Compile Include="Input\KeyPair.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Library\FontLibrary.cs" />
     <Compile Include="Systems\BodyState.cs" />
     <Compile Include="Systems\Entity.cs" />
+    <Compile Include="Systems\MenuControl.cs" />
     <Compile Include="Systems\MenuGroup.cs" />
     <Compile Include="Systems\Physics.cs" />
     <Compile Include="Systems\SpriteState.cs" />
