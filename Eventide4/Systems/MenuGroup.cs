@@ -50,9 +50,8 @@ namespace Eventide4.Systems
 
         public void Update()
         {
-            // TODO: Need a proper key input handling system.
-            if (menuOrder == MenuOrder.vertical && GlobalServices.KeyConfig.Down.Ticked()
-                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyConfig.Right.Ticked())
+            if (menuOrder == MenuOrder.vertical && GlobalServices.KeyHandler.Ticked(KeyType.Down)
+                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyHandler.Ticked(KeyType.Right))
             {
                 int index = menuList.IndexOf(current);
                 if (index == menuList.Count - 1)
@@ -61,8 +60,8 @@ namespace Eventide4.Systems
                     index = index + 1;
                 current = menuList[index];
             }
-            else if (menuOrder == MenuOrder.vertical && GlobalServices.KeyConfig.Up.Ticked()
-                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyConfig.Left.Ticked())
+            else if (menuOrder == MenuOrder.vertical && GlobalServices.KeyHandler.Ticked(KeyType.Up)
+                || menuOrder == MenuOrder.horizontal && GlobalServices.KeyHandler.Ticked(KeyType.Left))
             {
                 int index = menuList.IndexOf(current);
                 if (index == 0)

@@ -45,9 +45,11 @@
     <Compile Include="Exception\DebugException.cs" />
     <Compile Include="Exception\InvalidFileException.cs" />
     <Compile Include="Input\KeyConfig.cs" />
+    <Compile Include="Input\KeyHandler.cs" />
     <Compile Include="Input\KeyPair.cs" />
     <Compile Include="File\Pathfinder.cs" />
     <Compile Include="File\XmlHelper.cs" />
+    <Compile Include="Input\TextHandler.cs" />
     <Compile Include="Library\Font.cs" />
     <Compile Include="Library\FontLibrary.cs" />
     <Compile Include="Systems\BodyState.cs" />

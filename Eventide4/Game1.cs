@@ -80,10 +80,10 @@ namespace Eventide4
 
             //GlobalServices.GameTime = gameTime;
             GlobalServices.DeltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            GlobalServices.KeyConfig.Update();
+            GlobalServices.KeyHandler.Update();
             // TODO: Not all scenes and situations require the repeaters to be updated. Consider moving this into Scene classes.
             //   And when repeat updating is started again, run Reset() first to clear the repeat state.
-            GlobalServices.KeyConfig.UpdateRepeaters();
+            //GlobalServices.KeyConfig.UpdateRepeaters();
             Scene.Scene.UpdateScene();
 
             base.Update(gameTime);

@@ -13,6 +13,7 @@ namespace Eventide4
 {
     public class KeyPair
     {
+        KeyType keyType;
         Keys key1;
         Keys key2;
         bool pressed;
@@ -21,6 +22,23 @@ namespace Eventide4
         int tickCount;
         float heldTime;
 
+        [XmlIgnore]
+        public KeyType KeyType { get { return keyType; } set { keyType = value; } }
+
+        [XmlAttribute]
+        public string Type
+        {
+            get
+            {
+                return keyType.ToString();
+            }
+            set
+            {
+                //Enum.TryParse<KeyType>(value, out type);
+                keyType = (KeyType)Enum.Parse(typeof(KeyType), value);
+                // TODO: Catch exception here when invalid keytype is in config file.
+            }
+        }
         [XmlAttribute]
         public string Key1 { get { return key1.ToString(); } set { key1 = (Keys)Enum.Parse(typeof(Keys), value); } }
         [XmlAttribute]
@@ -30,34 +48,20 @@ namespace Eventide4
         {
         }
 
-        public KeyPair(Keys key1 = Keys.None, Keys key2 = Keys.None)// : this()
+        public void Set(KeyType keyType, Keys key1, Keys key2)
         {
+            this.keyType = keyType;
             this.key1 = key1;
             this.key2 = key2;
+        }
+
+        public void Reset()
+        {
             pressed = Keyboard.GetState().IsKeyDown(key1) || Keyboard.GetState().IsKeyDown(key2);
             toggled = false;
             ticked = false;
             tickCount = 0;
             heldTime = 0f;
-        }
-
-        public bool Held()
-        {
-            return pressed;
-        }
-
-        public bool JustPressed()
-        {
-            return pressed && toggled;
-        }
-        public bool JustReleased()
-        {
-            return !pressed && toggled;
-        }
-
-        public bool Ticked()
-        {
-            return ticked;
         }
 
         public void Update()
@@ -111,13 +115,23 @@ namespace Eventide4
             }
         }
 
-        public void Reset()
+        public bool Held()
         {
-            pressed = Keyboard.GetState().IsKeyDown(key1) || Keyboard.GetState().IsKeyDown(key2);
-            toggled = false;
-            ticked = false;
-            tickCount = 0;
-            heldTime = 0f;
+            return pressed;
+        }
+
+        public bool JustPressed()
+        {
+            return pressed && toggled;
+        }
+        public bool JustReleased()
+        {
+            return !pressed && toggled;
+        }
+
+        public bool Ticked()
+        {
+            return ticked;
         }
     }
 }
