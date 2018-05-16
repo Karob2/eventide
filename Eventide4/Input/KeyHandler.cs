@@ -25,8 +25,7 @@ namespace Eventide4
         MenuLeft,
         MenuRight,
         MenuSelect,
-        MenuBack,
-        Backspace
+        MenuBack
     }
 
     public class KeyHandler
@@ -35,7 +34,6 @@ namespace Eventide4
         // TODO: Only run repeater updates when needed.
 
         KeyPair[] keyList;
-        int keyListIndex;
 
         public KeyHandler()
         {
@@ -67,7 +65,6 @@ namespace Eventide4
             Set(KeyType.MenuRight, Keys.Right);
             Set(KeyType.MenuSelect, Keys.Enter);
             Set(KeyType.MenuBack, Keys.Escape);
-            Set(KeyType.Backspace, Keys.Back);
             Reset();
         }
 

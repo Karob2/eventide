@@ -49,6 +49,8 @@ namespace Eventide4.Scene
                 textureLibrary = GlobalServices.GlobalTextures;
                 spriteLibrary = GlobalServices.GlobalSprites;
             }
+
+            GlobalServices.TextHandler.Stop();
         }
 
         public static void Initialize()

@@ -29,6 +29,8 @@ namespace Eventide4
         public static Library.FontLibrary GlobalFonts { get; set; }
         public static KeyHandler KeyHandler { get; set; }
 
+        public static TextHandler TextHandler { get; set; }
+
         public static void Initialize(string gameName, Game game, GraphicsDeviceManager graphicsManager)
         {
             GameName = gameName;
@@ -91,6 +93,8 @@ namespace Eventide4
             Library.FontLibrary.AddLibrary(GlobalFonts);
 
             KeyHandler = new KeyHandler(Path.Combine(SaveDirectory, "keyconfig.xml"));
+
+            TextHandler = new TextHandler();
         }
 
         public static ContentManager NewContentManager()

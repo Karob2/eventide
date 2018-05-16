@@ -18,6 +18,11 @@ namespace Eventide4.Systems
         BodyState bodyState;
         Scene.Scene scene;
 
+        /*
+        public TextState TextState { get { return textState; } }
+        public BodyState BodyState { get { return bodyState; } }
+        */
+
         public bool Visible { get; set; }
 
         public Entity(Scene.Scene scene)
@@ -61,6 +66,14 @@ namespace Eventide4.Systems
                 textState.AddBody(bodyState);
             }
             return this;
+        }
+
+        public void SetText(string message)
+        {
+            if (textState != null)
+            {
+                textState.Message = message;
+            }
         }
 
         public void SetVelocity(float xVelocity, float yVelocity)

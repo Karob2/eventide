@@ -19,6 +19,9 @@ namespace Eventide4.Systems
         Library.Font font;
         BodyState body;
 
+        public string Message { get { return message; } set { message = value; } }
+        //public float X { get { return x; } set { x = value; } }
+
         public TextState(Library.Font font, string message = "", float x = 0f, float y = 0f, Color color = default(Color), float scale = 1f)
         {
             this.font = font;
