@@ -37,8 +37,9 @@ namespace Eventide4.Scene
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Start", 100f, 100f, menuTextColor, 1f));
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Config", 100f, 200f, menuTextColor, 1f));
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Exit", 100f, 300f, menuTextColor, 1f));
-            menu.SetSelect(MenuSelect);
-            menu.SetDeselect(MenuDeselect);
+            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCExit);
+            menu.SetSelect(MCSelect);
+            menu.SetDeselect(MCDeselect);
             menu.Refresh();
 
             // TODO: Consider moving this to the base Scene library, and Start() or Stop via a flag in the constructor.
@@ -47,13 +48,17 @@ namespace Eventide4.Scene
             GlobalServices.TextHandler.Start();
         }
 
-        public void MenuSelect(Systems.Entity entity)
+        public void MCSelect(Systems.Entity entity)
         {
             entity.TextState.Color = Color.White;
         }
-        public void MenuDeselect(Systems.Entity entity)
+        public void MCDeselect(Systems.Entity entity)
         {
             entity.TextState.Color = menuTextColor;
+        }
+        public void MCExit(Systems.Entity entity)
+        {
+            GlobalServices.Game.Exit();
         }
 
         public override void UpdateControl()

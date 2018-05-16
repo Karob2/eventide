@@ -73,6 +73,11 @@ namespace Eventide4.Systems
             }
         }
 
+        public Entity Last()
+        {
+            return menuList.Last();
+        }
+
         /*
         // Placeholder functions for handling visual state changes of menu items.
         public void Select(Entity entity)
