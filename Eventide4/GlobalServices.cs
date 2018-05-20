@@ -39,11 +39,7 @@ namespace Eventide4
             GlobalContent = game.Content;
             SpriteBatch = new SpriteBatch(game.GraphicsDevice);
 
-#if DEBUG
-            ContentDirectory = Path.Combine("..","..","..","..","..","Content");
-#else
             ContentDirectory = "Content";
-#endif
             //GlobalContent.RootDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), ContentDirectory);
             //System.Diagnostics.Debug.WriteLine(Path.GetFullPath(ContentDirectory));
             // TODO: How does this perform on linux? (And any other target OS.)
@@ -59,6 +55,11 @@ namespace Eventide4
             string extensionPath = Path.Combine(SaveDirectory, "Extensions");
             Directory.CreateDirectory(extensionPath);
             ExtensionDirectories = new List<string>();
+#if DEBUG
+            // In debug builds, also check the content folder in the root directory of the project.
+            // For the sake of lightweight history, this volatile folder is excluded from the repository.
+            ExtensionDirectories.Add(Path.Combine("..", "..", "..", "..", "..", "Content"));
+#endif
             // TODO: As a debug, all extensions are automatically loaded. I'm not certain what the final behaviour
             //   should be.
             foreach (string folder in Directory.GetDirectories(extensionPath))

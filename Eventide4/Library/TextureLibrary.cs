@@ -23,7 +23,12 @@ namespace Eventide4.Library
         protected override Texture2D Load(string path)
         {
             Texture2D texture;
-            Pathfinder pathfinder = Pathfinder.Find(path, "sprites", Pathfinder.FileType.image);
+            Pathfinder pathfinder = Pathfinder.Find(path, "textures", Pathfinder.FileType.image);
+            if (pathfinder.Path == null)
+            {
+                // Load fallback asset.
+                pathfinder = Pathfinder.Find("system:square", "textures", Pathfinder.FileType.image);
+            }
             if (pathfinder.Ext.Equals("xnb"))
             {
                 contentManager.RootDirectory = pathfinder.ContentPath;

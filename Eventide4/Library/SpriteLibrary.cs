@@ -36,6 +36,11 @@ namespace Eventide4.Library
             */
 
             Pathfinder pathfinder = Pathfinder.Find(path, "sprites", Pathfinder.FileType.xml);
+            if (pathfinder.Path == null)
+            {
+                // Load fallback asset.
+                pathfinder = Pathfinder.Find("system:default", "sprites", Pathfinder.FileType.xml);
+            }
             Sprite sprite = XmlHelper<Sprite>.Load(pathfinder.Path);
             Pathfinder.SetCurrentPath(pathfinder);
             sprite.SetTexture(textureLibrary.Register(sprite.TextureFile));

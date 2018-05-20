@@ -29,10 +29,20 @@ namespace Eventide4.Library
         protected override Font Load(string path)
         {
             Pathfinder pathfinder = Pathfinder.Find(path, "fonts", Pathfinder.FileType.xml);
+            if (pathfinder.Path == null)
+            {
+                // Load fallback asset.
+                pathfinder = Pathfinder.Find("system:default", "fonts", Pathfinder.FileType.xml);
+            }
             Font font = XmlHelper<Font>.Load(pathfinder.Path);
 
             Pathfinder.SetCurrentPath(pathfinder);
             Pathfinder pathfinder2 = Pathfinder.Find(font.FontFile, "fonts", Pathfinder.FileType.xnb);
+            if (pathfinder2.Path == null)
+            {
+                // Load fallback asset.
+                pathfinder2 = Pathfinder.Find("system:Pixellari_16px", "fonts", Pathfinder.FileType.xnb);
+            }
             contentManager.RootDirectory = pathfinder2.ContentPath;
             font.SetFont(contentManager.Load<SpriteFont>(pathfinder2.ContentFile));
             Pathfinder.ClearCurrentPath();

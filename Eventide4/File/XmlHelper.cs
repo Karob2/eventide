@@ -32,8 +32,11 @@ namespace Eventide4
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
             FileStream fs = new FileStream(path, FileMode.Create);
-            TextWriter writer = new StreamWriter(fs, new UTF8Encoding());
-            //serializer.Serialize(writer, item, new XmlSerializerNamespaces(new[] { new XmlQualifiedName("", "Microsoft.Xna.Framework") }));
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.IndentChars = "    ";
+            settings.Indent = true;
+            settings.Encoding = Encoding.UTF8;
+            XmlWriter writer = XmlWriter.Create(fs, settings);
             serializer.Serialize(writer, item, new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
             writer.Close();
         }
