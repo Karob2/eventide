@@ -25,7 +25,7 @@ namespace Eventide4.Library
         copy
     }
     
-    public class Book<T> where T : class
+    public class Book<T> //where T : class
     {
         public T Item { get; set; }
         public CopyState CopyState { get; set; }
@@ -37,7 +37,7 @@ namespace Eventide4.Library
         }
     }
     
-    public class Library<K, T> where T : class
+    public class Library<K, T> //where T : class
     {
         #region static
         /*
@@ -69,7 +69,7 @@ namespace Eventide4.Library
         }
 
         // Libraries should always be removed from the static list via this function when they are no longer needed.
-        // Otherwise, unneeded textures will not be garbage collected.
+        // Otherwise, unneeded assets will not be garbage collected.
         // TODO: If I ever need to remove multiple libraries in a short time span, it would be more efficient to also
         //   have a method that flags libraries for removal, then handles them smartly to avoid juggling asset loading.
         public static void RemoveLibrary(Library<K, T> library)
@@ -93,17 +93,17 @@ namespace Eventide4.Library
             list = new Dictionary<K, Book<T>>();
         }
 
-        // This method checks if a texture has been loaded already, loads if necessary, then returns the reference.
+        // This method checks if an asset has been loaded already, loads if necessary, then returns the reference.
         // --The local library is checked first.
-        // --If a texture reference is found in another library, the reference is copied to the local library.
+        // --If an asset reference is found in another library, the reference is copied to the local library.
         public T Register(K key)
         {
             Book<T> book;
 
-            // Search for loaded texture in local library and return if found.
+            // Search for loaded asset in local library and return if found.
             if (list.TryGetValue(key, out book)) return book.Item;
 
-            // Search for loaded texture in all texture libraries and copy reference to local library if found.
+            // Search for loaded asset in all libraries and copy reference to local library if found.
             foreach (Library<K, T> tLibrary in libraries)
             {
                 if (tLibrary == this) continue;
@@ -115,7 +115,7 @@ namespace Eventide4.Library
                 }
             }
 
-            // Otherwise, load the texture and store a reference in the local library.
+            // Otherwise, load the asset and store a reference in the local library.
             book = new Book<T>(Load(key), CopyState.unique);
             list.Add(key, book);
             return book.Item;
@@ -124,10 +124,10 @@ namespace Eventide4.Library
         protected virtual T Load(K key) { return default(T);  }
 
         /*
-        // Removes the specified texture from the local library.
-        // --Should only be used if absolutely certain the texture isn't being used locally and won't be used again soon.
+        // Removes the specified asset from the local library.
+        // --Should only be used if absolutely certain the asset isn't being used locally and won't be used again soon.
         // --Should only be used when large amounts of data should be released prematurely for performance reasons.
-        // Generally, garbage collection is sufficient to handle necessary removal whenever texture libraries are deleted.
+        // Generally, garbage collection is sufficient to handle necessary removal whenever asset libraries are deleted.
         public void Remove(K key)
         {
             list.Remove(key);
@@ -152,6 +152,7 @@ namespace Eventide4.Library
         // Forcibly unload assets, and force external references to reload them in their own libraries.
         public virtual void Unload()
         {
+            // TODO: Test this for bugs.
             foreach (K key in list.Keys)
             {
                 Unload(list[key].Item);
