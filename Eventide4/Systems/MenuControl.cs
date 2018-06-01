@@ -10,9 +10,9 @@ namespace Eventide4.Systems
     public class KeyResponse
     {
         public KeyType Key { get; set; }
-        public Delegate<Entity>.Method Command { get; set; }
+        public Action<Entity> Command { get; set; }
 
-        public KeyResponse(KeyType key, Delegate<Entity>.Method command)
+        public KeyResponse(KeyType key, Action<Entity> command)
         {
             Key = key;
             Command = command;
@@ -25,10 +25,10 @@ namespace Eventide4.Systems
         List<KeyResponse> keyResponses;
 
         // "Soft Select" is when the item was selected by default, and thus should be highlighted without the usual fanfare.
-        Delegate<Entity>.Method OnSelect { get; set; }
-        Delegate<Entity>.Method OnSoftSelect { get; set; }
-        Delegate<Entity>.Method OnDeselect { get; set; }
-        Delegate<Entity>.Method OnSoftDeselect { get; set; }
+        Action<Entity> OnSelect { get; set; }
+        Action<Entity> OnSoftSelect { get; set; }
+        Action<Entity> OnDeselect { get; set; }
+        Action<Entity> OnSoftDeselect { get; set; }
 
         public MenuControl(Entity parent)
         {
@@ -36,7 +36,7 @@ namespace Eventide4.Systems
             keyResponses = new List<KeyResponse>();
         }
 
-        public MenuControl SetAction(KeyType key, Delegate<Entity>.Method command)
+        public MenuControl SetAction(KeyType key, Action<Entity> command)
         {
             foreach (KeyResponse kr in keyResponses)
             {
@@ -51,31 +51,31 @@ namespace Eventide4.Systems
         }
 
         // Can be used to add multiple actions for a single key. TODO: Delete this?
-        public MenuControl AddAction(KeyType key, Delegate<Entity>.Method command)
+        public MenuControl AddAction(KeyType key, Action<Entity> command)
         {
             keyResponses.Add(new KeyResponse(key, command));
             return this;
         }
 
-        public MenuControl SetSelect(Delegate<Entity>.Method command)
+        public MenuControl SetSelect(Action<Entity> command)
         {
             OnSelect = command;
             return this;
         }
 
-        public MenuControl SetSoftSelect(Delegate<Entity>.Method command)
+        public MenuControl SetSoftSelect(Action<Entity> command)
         {
             OnSelect = command;
             return this;
         }
 
-        public MenuControl SetDeselect(Delegate<Entity>.Method command)
+        public MenuControl SetDeselect(Action<Entity> command)
         {
             OnDeselect = command;
             return this;
         }
 
-        public MenuControl SetSoftDeselect(Delegate<Entity>.Method command)
+        public MenuControl SetSoftDeselect(Action<Entity> command)
         {
             OnSoftDeselect = command;
             return this;
@@ -88,7 +88,7 @@ namespace Eventide4.Systems
             {
                 if (GlobalServices.KeyHandler.Ticked(kr.Key))
                     if (kr.Command != null)
-                        parent.Scene.QueueMethod(parent, kr.Command);
+                        parent.Scene.QueueMethod(kr.Command, parent);
                     //kr.Command?.Invoke(parent);
             }
         }
@@ -103,7 +103,7 @@ namespace Eventide4.Systems
             parent.Active = true;
             /*
             if (OnSelect != null)
-                parent.Scene.QueueMethod(parent, OnSelect);
+                parent.Scene.QueueMethod(OnSelect, parent);
             */
             OnSelect?.Invoke(parent);
         }
@@ -113,7 +113,7 @@ namespace Eventide4.Systems
             parent.Active = true;
             /*
             if (OnSoftSelect != null)
-                parent.Scene.QueueMethod(parent, OnSoftSelect);
+                parent.Scene.QueueMethod(OnSoftSelect, parent);
             else
                 Select();
             */
@@ -128,7 +128,7 @@ namespace Eventide4.Systems
             parent.Active = false;
             /*
             if (OnDeselect != null)
-                parent.Scene.QueueMethod(parent, OnDeselect);
+                parent.Scene.QueueMethod(OnDeselect, parent);
             */
             OnDeselect?.Invoke(parent);
         }

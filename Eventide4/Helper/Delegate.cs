@@ -6,39 +6,16 @@ using System.Threading.Tasks;
 
 namespace Eventide4
 {
-    public class Delegate<T>
-    {
-        public delegate void Method(T item);
-    }
-
-    // TODO: Does this oddly specific key container belong here?
-    /*
-    public class MethodItem<K, T>
-    {
-        public K item;// { get; set; }
-        public Delegate<T>.Method method;// { get; set; }
-
-        public MethodItem() { }
-
-        public MethodItem(K item, Delegate<T>.Method method)
-        {
-            this.item = item;
-            this.method = method;
-        }
-    }
-    */
-
+    // TODO: If this class is not implemented more than once or twice, delete it and move the code to wherever it is used.
     public class MethodItem<T>
     {
-        public T item;// { get; set; }
-        public Delegate<T>.Method method;// { get; set; }
+        private Action<T> method;
+        private T item;
 
-        //public MethodItem() { }
-
-        public MethodItem(T item, Delegate<T>.Method method)
+        public MethodItem(Action<T> method, T item)
         {
-            this.item = item;
             this.method = method;
+            this.item = item;
         }
 
         public void Invoke()

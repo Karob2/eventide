@@ -22,14 +22,14 @@ namespace Eventide4.Systems
         Entity current;
         MenuOrder menuOrder;
 
-        //Delegate<Entity>.Method defaultSelect, defaultDeselect;
+        //Action<Entity> defaultSelect, defaultDeselect;
 
         public MenuGroup(MenuOrder menuOrder = MenuOrder.vertical)
         /*
         public MenuGroup(
             MenuOrder menuOrder = MenuOrder.vertical,
-            Delegate<Entity>.Method defaultSelect = null,
-            Delegate<Entity>.Method defaultDeselect = null
+            Action<Entity> defaultSelect = null,
+            Action<Entity> defaultDeselect = null
             )
         */
         {
@@ -90,28 +90,28 @@ namespace Eventide4.Systems
         }
         */
 
-        public void SetSelect(Delegate<Entity>.Method method)
+        public void SetSelect(Action<Entity> method)
         {
             foreach (Entity entity in menuList)
             {
                 entity.MenuControl.SetSelect(method);
             }
         }
-        public void SetSoftSelect(Delegate<Entity>.Method method)
+        public void SetSoftSelect(Action<Entity> method)
         {
             foreach (Entity entity in menuList)
             {
                 entity.MenuControl.SetSoftSelect(method);
             }
         }
-        public void SetDeselect(Delegate<Entity>.Method method)
+        public void SetDeselect(Action<Entity> method)
         {
             foreach (Entity entity in menuList)
             {
                 entity.MenuControl.SetDeselect(method);
             }
         }
-        public void SetSoftDeselect(Delegate<Entity>.Method method)
+        public void SetSoftDeselect(Action<Entity> method)
         {
             foreach (Entity entity in menuList)
             {

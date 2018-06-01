@@ -11,7 +11,7 @@ namespace Eventide4.Scene
 {
     public class MethodQueueItem : MethodItem<Systems.Entity>
     {
-        public MethodQueueItem(Systems.Entity entity, Delegate<Systems.Entity>.Method method) : base(entity, method) { }
+        public MethodQueueItem(Action<Systems.Entity> method, Systems.Entity entity) : base(method, entity) { }
     }
 
     public class Scene
@@ -35,7 +35,7 @@ namespace Eventide4.Scene
 
         bool privateLibraries;
 
-        List<MethodQueueItem> methodQueue { get; set; }
+        List<MethodQueueItem> methodQueue;
 
         public Scene(bool privateLibraries)
         {
@@ -99,9 +99,9 @@ namespace Eventide4.Scene
             methodQueue.Clear();
         }
 
-        public void QueueMethod(Systems.Entity item, Delegate<Systems.Entity>.Method method)
+        public void QueueMethod(Action<Systems.Entity> method, Systems.Entity item)
         {
-            methodQueue.Add(new MethodQueueItem(item, method));
+            methodQueue.Add(new MethodQueueItem(method, item));
         }
 
         public virtual void UpdatePhysics()
