@@ -36,6 +36,7 @@ namespace Eventide4.Scene
             menu = new Systems.MenuGroup();
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Start", 100f, 100f, menuTextColor, 1f));
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Config", 100f, 200f, menuTextColor, 1f));
+            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCConfig);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Exit", 100f, 300f, menuTextColor, 1f));
             menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCExit);
             menu.SetSelect(MCSelect);
@@ -48,15 +49,20 @@ namespace Eventide4.Scene
             GlobalServices.TextHandler.Start();
         }
 
-        public void MCSelect(Systems.Entity entity)
+        public static void MCSelect(Systems.Entity entity)
         {
             entity.TextState.Color = Color.White;
         }
-        public void MCDeselect(Systems.Entity entity)
+        public static void MCDeselect(Systems.Entity entity)
         {
             entity.TextState.Color = menuTextColor;
         }
-        public void MCExit(Systems.Entity entity)
+        // TODO: Most commands probably don't need to know the calling entity, so consider making a no-parameter method list.
+        public static void MCConfig(Systems.Entity entity)
+        {
+            Scene.AddScene(new MenuConfig());
+        }
+        public static void MCExit(Systems.Entity entity)
         {
             GlobalServices.Game.Exit();
         }

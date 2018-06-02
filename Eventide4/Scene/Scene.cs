@@ -21,8 +21,10 @@ namespace Eventide4.Scene
             Menu,
             Level
         }
-        static Scene activeScene;
+        //static Scene activeScene;
         //public static Scene ActiveScene { get { return activeScene; } }
+        static List<Scene> activeScene;
+        static Scene focusScene;
 
         protected SceneType sceneType;
         protected List<Systems.Entity> entityList;
@@ -65,24 +67,43 @@ namespace Eventide4.Scene
 
         public static void Initialize()
         {
-            activeScene = new MainMenu();
+            activeScene = new List<Scene> { new MainMenu() };
+        }
+
+        public static void ChangeScene(Scene scene)
+        {
+            activeScene.Clear();
+            activeScene.Add(scene);
+        }
+
+        public static void AddScene(Scene scene)
+        {
+            activeScene.Add(scene);
+        }
+
+        public static void RemoveScene(Scene scene)
+        {
+            activeScene.Remove(scene);
         }
 
         public static void UpdateSceneControl()
         {
-            activeScene.UpdateControl();
+            activeScene.Last().UpdateControl();
         }
 
         public static void UpdateScenePhysics()
         {
-            activeScene.UpdatePhysics();
+            activeScene.Last().UpdatePhysics();
         }
 
         public static void RenderScene()
         {
             //ContentHandler.spriteBatch.Begin(samplerState: SamplerState.LinearWrap);
             GlobalServices.SpriteBatch.Begin();
-            activeScene.Render();
+            foreach (Scene scene in activeScene)
+            {
+                scene.Render();
+            }
             GlobalServices.SpriteBatch.End();
         }
 
@@ -109,7 +130,7 @@ namespace Eventide4.Scene
             physics.Update();
         }
 
-        public void Render()
+        public virtual void Render()
         {
             foreach (Systems.Entity entity in entityList)
             {

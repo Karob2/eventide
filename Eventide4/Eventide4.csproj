@@ -53,6 +53,7 @@
     <Compile Include="Input\TextHandler.cs" />
     <Compile Include="Library\Font.cs" />
     <Compile Include="Library\FontLibrary.cs" />
+    <Compile Include="Scene\MenuConfig.cs" />
     <Compile Include="Systems\BodyState.cs" />
     <Compile Include="Systems\Entity.cs" />
     <Compile Include="Systems\MenuControl.cs" />
