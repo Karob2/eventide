@@ -74,10 +74,9 @@ namespace Eventide4
                 Exit();
 #if DEBUG
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Keyboard.GetState().IsKeyDown(Keys.F1))
                 Exit();
 #endif
-
             //GlobalServices.GameTime = gameTime;
             GlobalServices.DeltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
             GlobalServices.KeyHandler.Update();
@@ -86,6 +85,12 @@ namespace Eventide4
             //GlobalServices.KeyConfig.UpdateRepeaters();
             Scene.Scene.UpdateSceneControl();
             Scene.Scene.UpdateScenePhysics();
+
+            if (GlobalServices.KeyHandler.JustPressed(KeyType.Console))
+            {
+                // TODO/BUGFIX: Prevent opening a console screen on top of a console screen (via multiple ~ presses).
+                Scene.Scene.AddScene(new Scene.ConsoleScene());
+            }
 
             base.Update(gameTime);
         }

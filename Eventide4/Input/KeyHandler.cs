@@ -25,7 +25,10 @@ namespace Eventide4
         MenuLeft,
         MenuRight,
         MenuConfirm,
-        MenuCancel
+        MenuCancel,
+        Console,
+        ConsoleConfirm,
+        ConsoleCancel
     }
 
     public class KeyHandler
@@ -66,6 +69,10 @@ namespace Eventide4
             Set(KeyType.MenuRight, Keys.Right, Keys.D);
             Set(KeyType.MenuConfirm, Keys.Enter, Keys.J);
             Set(KeyType.MenuCancel, Keys.Escape, Keys.K);
+            Set(KeyType.Console, Keys.OemTilde);
+            // Controls that perhaps shouldn't be configurable in the cfg file either.
+            Set(KeyType.ConsoleConfirm, Keys.Enter);
+            Set(KeyType.ConsoleCancel, Keys.Escape);
             Reset();
         }
 

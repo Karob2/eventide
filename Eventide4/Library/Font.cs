@@ -19,6 +19,8 @@ namespace Eventide4.Library
         public float Scale { get; set; }
 
         SpriteFont spriteFont;
+        [XmlIgnore]
+        public SpriteFont SpriteFont { get { return spriteFont; } set { spriteFont = value; } }
 
         public Font()
         {
@@ -28,6 +30,7 @@ namespace Eventide4.Library
         public void SetFont(SpriteFont spriteFont)
         {
             this.spriteFont = spriteFont;
+            this.spriteFont.DefaultCharacter = '?';
         }
 
         public void Render(string message, float x, float y, Color color, float scale, float depth = 1f)

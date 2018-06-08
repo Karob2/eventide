@@ -13,10 +13,13 @@ namespace Eventide4.Systems
     {
         string message;
         float x, y;
+        public float X { get { return x; } set { x = value; } }
+        public float Y { get { return y; } set { y = value; } }
         Color color;
         float scale;
         public Boolean Visible { get; set; }
         Library.Font font;
+        public Library.Font Font { get { return font; } set { font = value; } }
         BodyState body;
         public Color Color { get { return color; } set { color = value; } }
 

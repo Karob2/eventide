@@ -96,6 +96,11 @@ namespace Eventide4.Scene
                 */
             }
             stop1.SetText(message.ToString());
+
+            if (GlobalServices.KeyHandler.JustPressed(KeyType.MenuCancel))
+            {
+                if (menu.CheckOrSelectLast()) GlobalServices.Game.Exit();
+            }
         }
     }
 }

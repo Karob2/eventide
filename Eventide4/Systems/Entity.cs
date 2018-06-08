@@ -96,6 +96,16 @@ namespace Eventide4.Systems
             }
         }
 
+        /*
+        // TODO: Each component having its own coordinates is getting sloppy. Perhaps Entity should keep the master
+        //   coordinates, which are copied from the body, and to anything else that requests.
+        public void SetTextPosition(float x, float y)
+        {
+            textState.X = x;
+            textState.Y = y;
+        }
+        */
+
         public void SetVelocity(float xVelocity, float yVelocity)
         {
             bodyState.XVelocity = xVelocity;

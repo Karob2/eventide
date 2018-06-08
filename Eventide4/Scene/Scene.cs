@@ -14,8 +14,10 @@ namespace Eventide4.Scene
         public MethodQueueItem(Action<Systems.Entity> method, Systems.Entity entity) : base(method, entity) { }
     }
 
+    // TODO: Consider moving the static components into a "SceneHandler" class.
     public class Scene
     {
+        // TODO: Does this enum serve a purpose?
         public enum SceneType
         {
             Menu,

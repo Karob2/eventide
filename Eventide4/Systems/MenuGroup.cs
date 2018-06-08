@@ -153,5 +153,15 @@ namespace Eventide4.Systems
             current = menuList[index];
             current.MenuControl.Select();
         }
+
+        public bool CheckOrSelectLast()
+        {
+            if (current == menuList.Last())
+                return true;
+            current.MenuControl.Deselect();
+            current = menuList.Last();
+            current.MenuControl.Select();
+            return false;
+        }
     }
 }
