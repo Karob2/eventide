@@ -46,7 +46,7 @@ namespace Eventide4.Scene
             // TODO: Consider moving this to the base Scene library, and Start() or Stop via a flag in the constructor.
             //   Though it might need to be started and stopped within certain scenes? Unless all typing popups are
             //   handled as scenes of their own.
-            GlobalServices.TextHandler.Start();
+            //GlobalServices.TextHandler.Start();
         }
 
         public static void MCSelect(Systems.Entity entity)
@@ -69,12 +69,13 @@ namespace Eventide4.Scene
 
         public override void UpdateControl()
         {
-            GlobalServices.TextHandler.DumpBuffer();
+            //GlobalServices.TextHandler.DumpBuffer();
             base.UpdateControl();
             //menu.Update();
 
             // TODO: Implement text input as a control that can be attached to an entity?
             //   Start() and Stop() TextHandler from within the entity?
+            /*
             foreach (char c in GlobalServices.TextHandler.TextBuffer)
             {
                 if (Char.IsLetterOrDigit(c) || Char.IsPunctuation(c) || Char.IsSymbol(c) || c == ' ')
@@ -87,15 +88,16 @@ namespace Eventide4.Scene
                     if (message.Length > 0)
                         message.Remove(message.Length - 1, 1);
                 }
-                /*
+                
                 else
                 {
                     // To figure out which keys are being registered and what their codes are.
                     message.Append("(" + String.Format("0x{0:X}", Convert.ToByte(c)) + ")");
                 }
-                */
+                
             }
             stop1.SetText(message.ToString());
+            */
 
             if (GlobalServices.KeyHandler.JustPressed(KeyType.MenuCancel))
             {

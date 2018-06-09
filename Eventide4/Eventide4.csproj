@@ -46,6 +46,7 @@
     <Compile Include="Exception\InvalidFileException.cs" />
     <Compile Include="Helper\Console.cs" />
     <Compile Include="Helper\Delegate.cs" />
+    <Compile Include="Helper\TextContainer.cs" />
     <Compile Include="Input\KeyConfig.cs" />
     <Compile Include="Input\KeyHandler.cs" />
     <Compile Include="Input\KeyPair.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Scene\MainMenu.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="GlobalServices.cs" />
+    <Compile Include="Systems\TextBoxState.cs" />
     <Compile Include="Systems\TextState.cs" />
   </ItemGroup>
   <ItemGroup>

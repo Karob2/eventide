@@ -36,7 +36,7 @@ namespace Eventide4.Scene
             // TODO/DEBUG: Allow typing in custom resolutions to see what happens. (Or could implement this in the upcoming console.)
 
             // TODO: This shouldn't be necessary:
-            GlobalServices.TextHandler.Stop();
+            //GlobalServices.TextHandler.Stop();
         }
 
         public static void MCRes480(Systems.Entity entity)

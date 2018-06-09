@@ -21,6 +21,7 @@ namespace Eventide4.Systems
 
         public MenuControl MenuControl { get { return menuControl; } }
         public TextState TextState { get { return textState; } }
+        public TextBoxState TextBoxState { get; set; }
         public BodyState BodyState { get { return bodyState; } }
         public Scene.Scene Scene { get { return scene; } }
 
@@ -88,6 +89,13 @@ namespace Eventide4.Systems
             return this;
         }
 
+        public Entity AddTextBox(string fontpath, float x, float y, float width, float height, float padding, Color color = default(Color), string text = "")
+        {
+            Library.Font font = GlobalServices.GlobalFonts.Register(fontpath);
+            TextBoxState = new TextBoxState(font, x, y, width, height, padding, color, text);
+            return this;
+        }
+
         public void SetText(string message)
         {
             if (textState != null)
@@ -123,6 +131,7 @@ namespace Eventide4.Systems
             if (!Visible) return;
             if (spriteState != null) spriteState.Render();
             if (textState != null) textState.Render();
+            if (TextBoxState != null) TextBoxState.Render();
         }
     }
 }
