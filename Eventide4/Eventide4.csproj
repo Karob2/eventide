@@ -42,13 +42,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Input\KeyType.cs" />
+    <Compile Include="Input\InputManager.cs" />
+    <Compile Include="Input\KeyHandler.cs" />
+    <Compile Include="Input\KeyPair.cs" />
+    <Compile Include="Input\TextHandler.cs" />
     <Compile Include="Util\Console.cs" />
     <Compile Include="Util\Delegate.cs" />
-    <Compile Include="Util\Input\KeyHandler.cs" />
-    <Compile Include="Util\Input\KeyPair.cs" />
     <Compile Include="Util\Pathfinder.cs" />
     <Compile Include="Util\XmlHelper.cs" />
-    <Compile Include="Util\Input\TextHandler.cs" />
     <Compile Include="Libraries\Font.cs" />
     <Compile Include="Libraries\FontLibrary.cs" />
     <Compile Include="Scenes\ConsoleScene.cs" />

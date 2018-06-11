@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Eventide4.Util.Input;
 
 namespace Eventide4.Scenes
 {
@@ -22,15 +21,15 @@ namespace Eventide4.Scenes
 
             menu = new Systems.MenuGroup();
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "854x480", 200f, 120f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes480);
+            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCRes480);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "1280x720", 200f, 220f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes720);
+            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCRes720);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "1920x1080", 200f, 320f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes1080);
+            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCRes1080);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Fullscreen", 200f, 420f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCResFullscreen);
+            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCResFullscreen);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Back", 180f, 520f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCBack);
+            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCBack);
             menu.SetSelect(MainMenu.MCSelect);
             menu.SetDeselect(MainMenu.MCDeselect);
             menu.Refresh();

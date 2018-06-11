@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Eventide4.Util.Input;
 
 namespace Eventide4.Systems
 {
@@ -49,13 +48,13 @@ namespace Eventide4.Systems
             }
             if (menuOrder == MenuOrder.vertical)
             {
-                entity.MenuControl.SetAction(KeyType.MenuUp, Previous);
-                entity.MenuControl.SetAction(KeyType.MenuDown, Next);
+                entity.MenuControl.SetAction(Input.KeyType.MenuUp, Previous);
+                entity.MenuControl.SetAction(Input.KeyType.MenuDown, Next);
             }
             else
             {
-                entity.MenuControl.SetAction(KeyType.MenuLeft, Previous);
-                entity.MenuControl.SetAction(KeyType.MenuRight, Next);
+                entity.MenuControl.SetAction(Input.KeyType.MenuLeft, Previous);
+                entity.MenuControl.SetAction(Input.KeyType.MenuRight, Next);
             }
             //entity.MenuControl.SetSelect(Select);
             //entity.MenuControl.SetDeselect(Deselect);

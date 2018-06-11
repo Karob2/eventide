@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Eventide4.Util.Input;
 
 namespace Eventide4.Scenes
 {
@@ -99,13 +98,13 @@ namespace Eventide4.Scenes
 
             if (!(Keyboard.GetState().IsKeyDown(Keys.LeftControl) || Keyboard.GetState().IsKeyDown(Keys.RightControl)))
             {
-                if (GlobalServices.KeyHandler.JustPressed(KeyType.ConsoleConfirm))
+                if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.ConsoleConfirm))
                 {
                     console.LogMessage(inputMessage.ToString());
                     inputMessage.Clear();
                 }
             }
-            if (GlobalServices.KeyHandler.JustPressed(KeyType.ConsoleCancel))
+            if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.ConsoleCancel))
             {
                 if (inputMessage.Length == 0)
                 {

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Eventide4.Util;
 
 namespace Eventide4.Scenes
 {
-    public class MethodQueueItem : MethodItem<Systems.Entity>
+    public class MethodQueueItem : Util.MethodItem<Systems.Entity>
     {
         public MethodQueueItem(Action<Systems.Entity> method, Systems.Entity entity) : base(method, entity) { }
     }
@@ -27,7 +26,7 @@ namespace Eventide4.Scenes
         //static Scene activeScene;
         //public static Scene ActiveScene { get { return activeScene; } }
         static List<Scene> activeScene;
-        static Scene focusScene;
+        //static Scene focusScene;
 
         protected SceneType sceneType;
         protected List<Systems.Entity> entityList;

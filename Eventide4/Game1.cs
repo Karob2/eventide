@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.IO;
-using Eventide4.Util.Input;
 
 namespace Eventide4
 {
@@ -87,7 +86,7 @@ namespace Eventide4
             Scenes.Scene.UpdateSceneControl();
             Scenes.Scene.UpdateScenePhysics();
 
-            if (GlobalServices.KeyHandler.JustPressed(KeyType.Console))
+            if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.Console))
             {
                 // TODO/BUGFIX: Prevent opening a console screen on top of a console screen (via multiple ~ presses).
                 Scenes.Scene.AddScene(new Scenes.ConsoleScene());

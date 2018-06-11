@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Eventide4.Util.Input;
 
 namespace Eventide4.Systems
 {
     
     public class KeyResponse
     {
-        public KeyType Key { get; set; }
+        public Input.KeyType Key { get; set; }
         public Action<Entity> Command { get; set; }
 
-        public KeyResponse(KeyType key, Action<Entity> command)
+        public KeyResponse(Input.KeyType key, Action<Entity> command)
         {
             Key = key;
             Command = command;
@@ -37,7 +36,7 @@ namespace Eventide4.Systems
             keyResponses = new List<KeyResponse>();
         }
 
-        public MenuControl SetAction(KeyType key, Action<Entity> command)
+        public MenuControl SetAction(Input.KeyType key, Action<Entity> command)
         {
             foreach (KeyResponse kr in keyResponses)
             {
@@ -52,7 +51,7 @@ namespace Eventide4.Systems
         }
 
         // Can be used to add multiple actions for a single key. TODO: Delete this?
-        public MenuControl AddAction(KeyType key, Action<Entity> command)
+        public MenuControl AddAction(Input.KeyType key, Action<Entity> command)
         {
             keyResponses.Add(new KeyResponse(key, command));
             return this;

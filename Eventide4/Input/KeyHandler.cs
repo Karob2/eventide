@@ -10,29 +10,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Eventide4.Util.Input
+namespace Eventide4.Input
 {
-    // TODO: Rename KeyType to InputCommand or something else more generic since eventually it will apply to other
-    //   input modes as well.
-    public enum KeyType
-    {
-        Up,
-        Down,
-        Left,
-        Right,
-        Action1,
-        Action2,
-        MenuUp,
-        MenuDown,
-        MenuLeft,
-        MenuRight,
-        MenuConfirm,
-        MenuCancel,
-        Console,
-        ConsoleConfirm,
-        ConsoleCancel
-    }
-
     public class KeyConfig
     {
         public List<KeyPair> KeyList { get; set; }
@@ -101,7 +80,7 @@ namespace Eventide4.Util.Input
                 SaveConfig(path);
                 return;
             }
-            KeyConfig keyConfig = XmlHelper<KeyConfig>.Load(path);
+            KeyConfig keyConfig = Util.XmlHelper<KeyConfig>.Load(path);
             foreach (KeyPair keyPair in keyConfig.KeyList)
             {
                 keyList[(int)keyPair.KeyType] = keyPair;
@@ -119,7 +98,7 @@ namespace Eventide4.Util.Input
 
                 keyConfig.KeyList.Add(keyList[(int)keyType]);
             }
-            XmlHelper<KeyConfig>.Save(path, keyConfig);
+            Util.XmlHelper<KeyConfig>.Save(path, keyConfig);
         }
 
         public void Update()
