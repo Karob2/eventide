@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.IO;
+using Eventide4.Util.Input;
 
 namespace Eventide4
 {
@@ -48,7 +49,7 @@ namespace Eventide4
         protected override void LoadContent()
         {
             // TODO: Load global content here (like menu textures, so they aren't loaded and unloaded throughout the game).
-            Scene.Scene.Initialize();
+            Scenes.Scene.Initialize();
         }
 
         /// <summary>
@@ -83,13 +84,13 @@ namespace Eventide4
             // TODO: Not all scenes and situations require the repeaters to be updated. Consider moving this into Scene classes.
             //   And when repeat updating is started again, run Reset() first to clear the repeat state.
             //GlobalServices.KeyConfig.UpdateRepeaters();
-            Scene.Scene.UpdateSceneControl();
-            Scene.Scene.UpdateScenePhysics();
+            Scenes.Scene.UpdateSceneControl();
+            Scenes.Scene.UpdateScenePhysics();
 
             if (GlobalServices.KeyHandler.JustPressed(KeyType.Console))
             {
                 // TODO/BUGFIX: Prevent opening a console screen on top of a console screen (via multiple ~ presses).
-                Scene.Scene.AddScene(new Scene.ConsoleScene());
+                Scenes.Scene.AddScene(new Scenes.ConsoleScene());
             }
 
             base.Update(gameTime);
@@ -102,7 +103,7 @@ namespace Eventide4
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            Scene.Scene.RenderScene();
+            Scenes.Scene.RenderScene();
 
             base.Draw(gameTime);
         }

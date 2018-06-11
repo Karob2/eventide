@@ -12,10 +12,10 @@ namespace Eventide4.Systems
         //public float X { get { return x; } set { x = value; } }
         //public float Y { get { return y; } set { y = value; } }
         public Boolean Visible { get; set; }
-        Library.Sprite sprite;
+        Libraries.Sprite sprite;
         BodyState body;
 
-        public SpriteState(Library.Sprite sprite, float x = 0f, float y = 0f)
+        public SpriteState(Libraries.Sprite sprite, float x = 0f, float y = 0f)
         {
             this.sprite = sprite;
             this.x = x;

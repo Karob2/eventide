@@ -1,14 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Eventide4.Util.Input;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
     public class ConsoleScene : Scene
     {
@@ -16,7 +17,7 @@ namespace Eventide4.Scene
         Systems.Entity logText;
         StringBuilder inputMessage;
 
-        Console console;
+        Util.Console console;
 
         SpriteFont font;
         int areaX, areaY, areaWidth, areaHeight, maxLines;
@@ -34,7 +35,7 @@ namespace Eventide4.Scene
 
             SetupVisuals();
 
-            console = new Console();
+            console = new Util.Console();
             UpdateLog();
 
             GlobalServices.TextHandler.Start();

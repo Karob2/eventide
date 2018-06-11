@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Eventide4.Util;
 
-namespace Eventide4.Library
+namespace Eventide4.Libraries
 {
     public class TextureLibrary : Library<string, Texture2D>
     {

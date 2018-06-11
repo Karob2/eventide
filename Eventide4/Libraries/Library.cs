@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventide4.Library
+namespace Eventide4.Libraries
 {
     // TODO: Perhaps I should make libraries only reference themselves and the global library.
     //   This would avoid some of the memory gymnastics, and excessive resource duplication can be avoided by

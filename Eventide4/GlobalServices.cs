@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Eventide4.Util.Input;
 
 namespace Eventide4
 {
@@ -24,9 +25,9 @@ namespace Eventide4
         public static SpriteBatch SpriteBatch { get; set; }
         //public static GameTime GameTime { get; set; }
         public static float DeltaSeconds { get; set; }
-        public static Library.TextureLibrary GlobalTextures { get; set; }
-        public static Library.SpriteLibrary GlobalSprites { get; set; }
-        public static Library.FontLibrary GlobalFonts { get; set; }
+        public static Libraries.TextureLibrary GlobalTextures { get; set; }
+        public static Libraries.SpriteLibrary GlobalSprites { get; set; }
+        public static Libraries.FontLibrary GlobalFonts { get; set; }
         public static KeyHandler KeyHandler { get; set; }
 
         public static TextHandler TextHandler { get; set; }
@@ -80,18 +81,18 @@ namespace Eventide4
 #endif
 */
 
-            Library.TextureLibrary.Initialize();
-            Library.SpriteLibrary.Initialize();
-            Library.FontLibrary.Initialize();
+            Libraries.TextureLibrary.Initialize();
+            Libraries.SpriteLibrary.Initialize();
+            Libraries.FontLibrary.Initialize();
 
-            GlobalTextures = new Library.TextureLibrary();
-            Library.TextureLibrary.AddLibrary(GlobalTextures);
+            GlobalTextures = new Libraries.TextureLibrary();
+            Libraries.TextureLibrary.AddLibrary(GlobalTextures);
 
-            GlobalSprites = new Library.SpriteLibrary(GlobalTextures);
-            Library.SpriteLibrary.AddLibrary(GlobalSprites);
+            GlobalSprites = new Libraries.SpriteLibrary(GlobalTextures);
+            Libraries.SpriteLibrary.AddLibrary(GlobalSprites);
 
-            GlobalFonts = new Library.FontLibrary();
-            Library.FontLibrary.AddLibrary(GlobalFonts);
+            GlobalFonts = new Libraries.FontLibrary();
+            Libraries.FontLibrary.AddLibrary(GlobalFonts);
 
             KeyHandler = new KeyHandler(Path.Combine(SaveDirectory, "keyconfig.xml"));
 
