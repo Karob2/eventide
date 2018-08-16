@@ -98,13 +98,13 @@ namespace Eventide4.Scenes
 
             if (!(Keyboard.GetState().IsKeyDown(Keys.LeftControl) || Keyboard.GetState().IsKeyDown(Keys.RightControl)))
             {
-                if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.ConsoleConfirm))
+                if (GlobalServices.InputManager.JustPressed(Input.GameCommand.ConsoleConfirm))
                 {
                     console.LogMessage(inputMessage.ToString());
                     inputMessage.Clear();
                 }
             }
-            if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.ConsoleCancel))
+            if (GlobalServices.InputManager.JustPressed(Input.GameCommand.ConsoleCancel))
             {
                 if (inputMessage.Length == 0)
                 {

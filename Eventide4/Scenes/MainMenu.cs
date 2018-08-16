@@ -36,9 +36,9 @@ namespace Eventide4.Scenes
             menu = new Systems.MenuGroup();
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Start", 100f, 100f, menuTextColor, 1f));
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Config", 100f, 200f, menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCConfig);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCConfig);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Exit", 100f, 300f, menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(Input.KeyType.MenuConfirm, MCExit);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCExit);
             menu.SetSelect(MCSelect);
             menu.SetDeselect(MCDeselect);
             menu.Refresh();
@@ -97,7 +97,7 @@ namespace Eventide4.Scenes
             }
             stop1.SetText(message.ToString());
 
-            if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.MenuCancel))
+            if (GlobalServices.InputManager.JustPressed(Input.GameCommand.MenuCancel))
             {
                 if (menu.CheckOrSelectLast()) GlobalServices.Game.Exit();
             }

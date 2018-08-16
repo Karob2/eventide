@@ -14,6 +14,7 @@ namespace Eventide4
     {
         GraphicsDeviceManager graphicsManager;
         const string gameName = "Eventide";
+        const string companyName = "Karob2";
 
         public Game1()
         {
@@ -37,7 +38,7 @@ namespace Eventide4
             graphicsManager.PreferredBackBufferHeight = 720;
             graphicsManager.ApplyChanges();
 
-            GlobalServices.Initialize(gameName, this, graphicsManager);
+            GlobalServices.Initialize(gameName, companyName, this, graphicsManager);
             base.Initialize();
         }
 
@@ -79,14 +80,14 @@ namespace Eventide4
 #endif
             //GlobalServices.GameTime = gameTime;
             GlobalServices.DeltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            GlobalServices.KeyHandler.Update();
+            GlobalServices.InputManager.Update();
             // TODO: Not all scenes and situations require the repeaters to be updated. Consider moving this into Scene classes.
             //   And when repeat updating is started again, run Reset() first to clear the repeat state.
             //GlobalServices.KeyConfig.UpdateRepeaters();
             Scenes.Scene.UpdateSceneControl();
             Scenes.Scene.UpdateScenePhysics();
 
-            if (GlobalServices.KeyHandler.JustPressed(Input.KeyType.Console))
+            if (GlobalServices.InputManager.JustPressed(Input.GameCommand.Console))
             {
                 // TODO/BUGFIX: Prevent opening a console screen on top of a console screen (via multiple ~ presses).
                 Scenes.Scene.AddScene(new Scenes.ConsoleScene());

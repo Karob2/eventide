@@ -48,13 +48,13 @@ namespace Eventide4.Systems
             }
             if (menuOrder == MenuOrder.vertical)
             {
-                entity.MenuControl.SetAction(Input.KeyType.MenuUp, Previous);
-                entity.MenuControl.SetAction(Input.KeyType.MenuDown, Next);
+                entity.MenuControl.SetAction(Input.GameCommand.MenuUp, Previous);
+                entity.MenuControl.SetAction(Input.GameCommand.MenuDown, Next);
             }
             else
             {
-                entity.MenuControl.SetAction(Input.KeyType.MenuLeft, Previous);
-                entity.MenuControl.SetAction(Input.KeyType.MenuRight, Next);
+                entity.MenuControl.SetAction(Input.GameCommand.MenuLeft, Previous);
+                entity.MenuControl.SetAction(Input.GameCommand.MenuRight, Next);
             }
             //entity.MenuControl.SetSelect(Select);
             //entity.MenuControl.SetDeselect(Deselect);

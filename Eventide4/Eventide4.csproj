@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
@@ -42,10 +43,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Input\KeyType.cs" />
+    <Compile Include="Input\InputSetting.cs" />
+    <Compile Include="Input\InputType.cs" />
     <Compile Include="Input\InputManager.cs" />
-    <Compile Include="Input\KeyHandler.cs" />
-    <Compile Include="Input\KeyPair.cs" />
     <Compile Include="Input\TextHandler.cs" />
     <Compile Include="Util\Console.cs" />
     <Compile Include="Util\Delegate.cs" />
