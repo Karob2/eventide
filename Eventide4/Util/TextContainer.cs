@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventide4
+namespace Eventide4.Util
 {
     public class TextLine
     {
@@ -25,7 +25,7 @@ namespace Eventide4
 
     public class TextContainer
     {
-        Library.Font font;
+        Libraries.Font font;
         float width;
         float height;
         float lineSpacing;
@@ -42,7 +42,7 @@ namespace Eventide4
         int cursorX;
         int cursorY;
 
-        public TextContainer(Library.Font font, float width, float height = 0f, string text = null)
+        public TextContainer(Libraries.Font font, float width, float height = 0f, string text = null)
         {
             this.font = font;
             this.width = width;

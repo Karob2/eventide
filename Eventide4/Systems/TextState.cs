@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Eventide4.Systems
 {
@@ -18,15 +18,15 @@ namespace Eventide4.Systems
         Color color;
         float scale;
         public Boolean Visible { get; set; }
-        Library.Font font;
-        public Library.Font Font { get { return font; } set { font = value; } }
+        Libraries.Font font;
+        public Libraries.Font Font { get { return font; } set { font = value; } }
         BodyState body;
         public Color Color { get { return color; } set { color = value; } }
 
         public string Message { get { return message; } set { message = value; } }
         //public float X { get { return x; } set { x = value; } }
 
-        public TextState(Library.Font font, string message = "", float x = 0f, float y = 0f, Color color = default(Color), float scale = 1f)
+        public TextState(Libraries.Font font, string message = "", float x = 0f, float y = 0f, Color color = default(Color), float scale = 1f)
         {
             this.font = font;
             this.message = message;

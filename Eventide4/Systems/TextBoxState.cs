@@ -17,18 +17,18 @@ namespace Eventide4.Systems
         Color color;
         float scale;
         public Boolean Visible { get; set; }
-        Library.Font font;
-        public Library.Font Font { get { return font; } set { font = value; } }
+        Libraries.Font font;
+        public Libraries.Font Font { get { return font; } set { font = value; } }
         BodyState body;
         public Color Color { get { return color; } set { color = value; } }
 
-        TextContainer textContainer;
+        Util.TextContainer textContainer;
         //public TextContainer TextContainer { get { return textContainer; } set { textContainer = value; } }
 
         //public string Message { get { return message; } set { message = value; } }
         //public float X { get { return x; } set { x = value; } }
 
-        public TextBoxState(Library.Font font, float x, float y, float width, float height, float padding, Color color = default(Color), string text = "")
+        public TextBoxState(Libraries.Font font, float x, float y, float width, float height, float padding, Color color = default(Color), string text = "")
         {
             this.font = font;
             this.x = x;
@@ -39,7 +39,7 @@ namespace Eventide4.Systems
             this.color = color;
             Visible = true;
 
-            textContainer = new TextContainer(font, width - padding * 2, height - padding * 2, text);
+            textContainer = new Util.TextContainer(font, width - padding * 2, height - padding * 2, text);
         }
 
         public void AddBody(BodyState body)

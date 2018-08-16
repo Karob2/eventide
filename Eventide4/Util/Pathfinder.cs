@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventide4
+namespace Eventide4.Util
 {
     public class Pathfinder
     {
@@ -95,9 +91,9 @@ namespace Eventide4
                 for (int i = 0; i < ext.Length; i++)
                 {
                     path2 = System.IO.Path.Combine(folder, path1, file + "." + ext[i]);
-/*#if DEBUG
-                    System.Diagnostics.Debug.WriteLine("Searching " + path2);
-#endif*/
+                    /*#if DEBUG
+                                        System.Diagnostics.Debug.WriteLine("Searching " + path2);
+                    #endif*/
                     if (File.Exists(path2))
                     {
                         this.ext = ext[i];
@@ -110,9 +106,9 @@ namespace Eventide4
             for (int i = 0; i < ext.Length; i++)
             {
                 path2 = System.IO.Path.Combine(GlobalServices.ContentDirectory, path1, file + "." + ext[i]);
-/*#if DEBUG
-                System.Diagnostics.Debug.WriteLine("Searching " + path2);
-#endif*/
+                /*#if DEBUG
+                                System.Diagnostics.Debug.WriteLine("Searching " + path2);
+                #endif*/
                 if (File.Exists(path2))
                 {
                     this.ext = ext[i];
@@ -160,7 +156,7 @@ namespace Eventide4
             }
             else if (parts.Length != 1)
             {
-                throw new InvalidFileException("Duplicate namespace marker ':' in '" + locator + "'.");
+                throw new Exception("Duplicate namespace marker ':' in '" + locator + "'.");
             }
             string[] parts2 = parts[parts.Length - 1].Split('/');
             pathfinder.file = parts2[parts2.Length - 1];
@@ -173,7 +169,7 @@ namespace Eventide4
                     {
                         if (pathfinder.sub.Count < 1)
                         {
-                            throw new InvalidFileException("Path out of resource folder with excessive ':' in '" + locator + "'.");
+                            throw new Exception("Path out of resource folder with excessive ':' in '" + locator + "'.");
                         }
                         pathfinder.sub.RemoveAt(pathfinder.sub.Count - 1);
                     }
@@ -191,18 +187,18 @@ namespace Eventide4
             */
             if (!Validate(pathfinder._namespace))
             {
-                throw new InvalidFileException("Invalid namespace character in '" + pathfinder._namespace + "' via '" + locator + "'.");
+                throw new Exception("Invalid namespace character in '" + pathfinder._namespace + "' via '" + locator + "'.");
             }
             foreach (string str in pathfinder.sub)
             {
                 if (!Validate(str))
                 {
-                    throw new InvalidFileException("Invalid path character in '" + str + "' via '" + locator + "'.");
+                    throw new Exception("Invalid path character in '" + str + "' via '" + locator + "'.");
                 }
             }
             if (!Validate(pathfinder.file))
             {
-                throw new InvalidFileException("Invalid filename character in '" + pathfinder.file + "' via '" + locator + "'.");
+                throw new Exception("Invalid filename character in '" + pathfinder.file + "' via '" + locator + "'.");
             }
             pathfinder.FindPath();
             return pathfinder;

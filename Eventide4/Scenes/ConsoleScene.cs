@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
     public class ConsoleScene : Scene
     {
@@ -17,7 +17,7 @@ namespace Eventide4.Scene
         StringBuilder inputMessage;
         Systems.Entity logBox;
 
-        Console console;
+        Util.Console console;
 
         SpriteFont font;
         int areaX, areaY, areaWidth, areaHeight, areaPadding, maxLines;
@@ -37,7 +37,7 @@ namespace Eventide4.Scene
 
             SetupVisuals();
 
-            console = new Console();
+            console = new Util.Console();
             UpdateLog();
 
             //GlobalServices.TextHandler.Start();
@@ -106,13 +106,13 @@ namespace Eventide4.Scene
             /*
             if (!(Keyboard.GetState().IsKeyDown(Keys.LeftControl) || Keyboard.GetState().IsKeyDown(Keys.RightControl)))
             {
-                if (GlobalServices.KeyHandler.JustPressed(KeyType.ConsoleConfirm))
+                if (GlobalServices.InputManager.JustPressed(Input.GameCommand.ConsoleConfirm))
                 {
                     console.LogMessage(inputMessage.ToString());
                     inputMessage.Clear();
                 }
             }
-            if (GlobalServices.KeyHandler.JustPressed(KeyType.ConsoleCancel))
+            if (GlobalServices.InputManager.JustPressed(Input.GameCommand.ConsoleCancel))
             {
                 if (inputMessage.Length == 0)
                 {

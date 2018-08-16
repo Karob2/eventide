@@ -1,15 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
-    public class MethodQueueItem : MethodItem<Systems.Entity>
+    public class MethodQueueItem : Util.MethodItem<Systems.Entity>
     {
         public MethodQueueItem(Action<Systems.Entity> method, Systems.Entity entity) : base(method, entity) { }
     }
@@ -26,16 +26,16 @@ namespace Eventide4.Scene
         //static Scene activeScene;
         //public static Scene ActiveScene { get { return activeScene; } }
         static List<Scene> activeScene;
-        static Scene focusScene;
+        //static Scene focusScene;
 
         protected SceneType sceneType;
         protected List<Systems.Entity> entityList;
         protected Systems.Physics physics;
-        protected Library.TextureLibrary textureLibrary;
-        protected Library.SpriteLibrary spriteLibrary;
+        protected Libraries.TextureLibrary textureLibrary;
+        protected Libraries.SpriteLibrary spriteLibrary;
 
         public Systems.Physics Physics { get { return physics; } }
-        public Library.SpriteLibrary SpriteLibrary { get { return spriteLibrary; } }
+        public Libraries.SpriteLibrary SpriteLibrary { get { return spriteLibrary; } }
 
         bool privateLibraries;
 
@@ -51,10 +51,10 @@ namespace Eventide4.Scene
 
             if (privateLibraries)
             {
-                textureLibrary = new Library.TextureLibrary();
-                Library.TextureLibrary.AddLibrary(textureLibrary);
-                spriteLibrary = new Library.SpriteLibrary(textureLibrary);
-                Library.SpriteLibrary.AddLibrary(spriteLibrary);
+                textureLibrary = new Libraries.TextureLibrary();
+                Libraries.TextureLibrary.AddLibrary(textureLibrary);
+                spriteLibrary = new Libraries.SpriteLibrary(textureLibrary);
+                Libraries.SpriteLibrary.AddLibrary(spriteLibrary);
             }
             else
             {
@@ -145,8 +145,8 @@ namespace Eventide4.Scene
             // Content disposal is automatically handled within the libraries:
             if (privateLibraries)
             {
-                Library.TextureLibrary.RemoveLibrary(textureLibrary);
-                Library.SpriteLibrary.RemoveLibrary(spriteLibrary);
+                Libraries.TextureLibrary.RemoveLibrary(textureLibrary);
+                Libraries.SpriteLibrary.RemoveLibrary(spriteLibrary);
             }
             // TODO: Should any other scene resources have forced disposal, or does dereferencing suffice?
         }

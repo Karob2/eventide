@@ -1,17 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Xml.Serialization;
-using System.Xml.Linq;
+using Eventide4.Util;
 
-namespace Eventide4.Library
+namespace Eventide4.Libraries
 {
     public class SpriteLibrary : Library<string, Sprite>
     {

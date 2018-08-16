@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Eventide4.Systems
 {
@@ -17,19 +17,19 @@ namespace Eventide4.Systems
         SpriteState spriteState;
         TextState textState;
         BodyState bodyState;
-        Scene.Scene scene;
+        Scenes.Scene scene;
 
         public MenuControl MenuControl { get { return menuControl; } }
         public TextState TextState { get { return textState; } }
         public TextBoxState TextBoxState { get; set; }
         public BodyState BodyState { get { return bodyState; } }
-        public Scene.Scene Scene { get { return scene; } }
+        public Scenes.Scene Scene { get { return scene; } }
 
         public bool Visible { get; set; }
         public bool Active { get; set; }
         //public bool Selected { get; set; }
 
-        public Entity(Scene.Scene scene)
+        public Entity(Scenes.Scene scene)
         {
             this.scene = scene;
             Visible = true;
@@ -37,7 +37,7 @@ namespace Eventide4.Systems
         }
 
         // Constructor to automatically add newly created entity to parent scene's entity list.
-        public Entity(Scene.Scene scene, List<Entity> entityList)
+        public Entity(Scenes.Scene scene, List<Entity> entityList)
         {
             this.scene = scene;
             Visible = true;
@@ -69,7 +69,7 @@ namespace Eventide4.Systems
 
         public Entity AddSprite(string path, float x = 0f, float y = 0f)
         {
-            Library.Sprite sprite = scene.SpriteLibrary.Register(path);
+            Libraries.Sprite sprite = scene.SpriteLibrary.Register(path);
             spriteState = new SpriteState(sprite, x, y);
             if (bodyState != null)
             {
@@ -80,7 +80,7 @@ namespace Eventide4.Systems
 
         public Entity AddText(string fontpath, string message, float x = 0f, float y = 0f, Color color = default(Color), float scale = 1f)
         {
-            Library.Font font = GlobalServices.GlobalFonts.Register(fontpath);
+            Libraries.Font font = GlobalServices.GlobalFonts.Register(fontpath);
             textState = new TextState(font, message, x, y, color, scale);
             if (bodyState != null)
             {
@@ -91,7 +91,7 @@ namespace Eventide4.Systems
 
         public Entity AddTextBox(string fontpath, float x, float y, float width, float height, float padding, Color color = default(Color), string text = "")
         {
-            Library.Font font = GlobalServices.GlobalFonts.Register(fontpath);
+            Libraries.Font font = GlobalServices.GlobalFonts.Register(fontpath);
             TextBoxState = new TextBoxState(font, x, y, width, height, padding, color, text);
             return this;
         }
