@@ -1,18 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Xml;
-using System.Xml.Serialization;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
-namespace Eventide4
+namespace Eventide4.Util
 {
     public static class XmlHelper<T> where T : class
     {

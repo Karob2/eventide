@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
     public class Level : Scene
     {

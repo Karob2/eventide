@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
     public class MainMenu : Scene
     {
@@ -36,9 +36,9 @@ namespace Eventide4.Scene
             menu = new Systems.MenuGroup();
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Start", 100f, 100f, menuTextColor, 1f));
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Config", 100f, 200f, menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCConfig);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCConfig);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Exit", 100f, 300f, menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCExit);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCExit);
             menu.SetSelect(MCSelect);
             menu.SetDeselect(MCDeselect);
             menu.Refresh();
@@ -97,7 +97,7 @@ namespace Eventide4.Scene
             }
             stop1.SetText(message.ToString());
 
-            if (GlobalServices.KeyHandler.JustPressed(KeyType.MenuCancel))
+            if (GlobalServices.InputManager.JustPressed(Input.GameCommand.MenuCancel))
             {
                 if (menu.CheckOrSelectLast()) GlobalServices.Game.Exit();
             }

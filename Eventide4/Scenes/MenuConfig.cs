@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Eventide4.Scene
+namespace Eventide4.Scenes
 {
     public class MenuConfig : Scene
     {
@@ -21,15 +21,15 @@ namespace Eventide4.Scene
 
             menu = new Systems.MenuGroup();
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "854x480", 200f, 120f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes480);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCRes480);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "1280x720", 200f, 220f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes720);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCRes720);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "1920x1080", 200f, 320f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCRes1080);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCRes1080);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Fullscreen", 200f, 420f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCResFullscreen);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCResFullscreen);
             menu.Add(new Systems.Entity(this, entityList).AddText("default", "Back", 180f, 520f, MainMenu.menuTextColor, 1f));
-            menu.Last().MenuControl.SetAction(KeyType.MenuConfirm, MCBack);
+            menu.Last().MenuControl.SetAction(Input.GameCommand.MenuConfirm, MCBack);
             menu.SetSelect(MainMenu.MCSelect);
             menu.SetDeselect(MainMenu.MCDeselect);
             menu.Refresh();

@@ -14,6 +14,7 @@ namespace Eventide4
     public static class GlobalServices
     {
         public static string GameName { get; set; }
+        public static string CompanyName { get; set; }
         public static string ContentDirectory { get; set; }
         public static string SaveDirectory { get; set; }
         public static List<string> ExtensionDirectories { get; set; }
@@ -24,16 +25,17 @@ namespace Eventide4
         public static SpriteBatch SpriteBatch { get; set; }
         //public static GameTime GameTime { get; set; }
         public static float DeltaSeconds { get; set; }
-        public static Library.TextureLibrary GlobalTextures { get; set; }
-        public static Library.SpriteLibrary GlobalSprites { get; set; }
-        public static Library.FontLibrary GlobalFonts { get; set; }
-        public static KeyHandler KeyHandler { get; set; }
+        public static Libraries.TextureLibrary GlobalTextures { get; set; }
+        public static Libraries.SpriteLibrary GlobalSprites { get; set; }
+        public static Libraries.FontLibrary GlobalFonts { get; set; }
+        public static Input.InputManager InputManager { get; set; }
 
-        public static TextHandler TextHandler { get; set; }
+        public static Input.TextHandler TextHandler { get; set; }
 
-        public static void Initialize(string gameName, Game game, GraphicsDeviceManager graphicsManager)
+        public static void Initialize(string gameName, string companyName, Game game, GraphicsDeviceManager graphicsManager)
         {
             GameName = gameName;
+            CompanyName = companyName;
             Game = game;
             GraphicsManager = graphicsManager;
             GlobalContent = game.Content;
@@ -43,7 +45,11 @@ namespace Eventide4
             //GlobalContent.RootDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), ContentDirectory);
             //System.Diagnostics.Debug.WriteLine(Path.GetFullPath(ContentDirectory));
             // TODO: How does this perform on linux? (And any other target OS.)
-            SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", gameName);
+            //SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "My Games", gameName);
+            SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), companyName, gameName);
+            // TODO: Set up a way for apps to specify whether to use a global or user-specific save location.
+            //SaveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), gameName);
+            // Probably don't need to support Roaming data.
             // Ugh, should I wash input and output so that backslashes in custom content don't break linux?
             // Path.DirectorySeparatorChar
             Directory.CreateDirectory(SaveDirectory);
@@ -80,22 +86,22 @@ namespace Eventide4
 #endif
 */
 
-            Library.TextureLibrary.Initialize();
-            Library.SpriteLibrary.Initialize();
-            Library.FontLibrary.Initialize();
+            Libraries.TextureLibrary.Initialize();
+            Libraries.SpriteLibrary.Initialize();
+            Libraries.FontLibrary.Initialize();
 
-            GlobalTextures = new Library.TextureLibrary();
-            Library.TextureLibrary.AddLibrary(GlobalTextures);
+            GlobalTextures = new Libraries.TextureLibrary();
+            Libraries.TextureLibrary.AddLibrary(GlobalTextures);
 
-            GlobalSprites = new Library.SpriteLibrary(GlobalTextures);
-            Library.SpriteLibrary.AddLibrary(GlobalSprites);
+            GlobalSprites = new Libraries.SpriteLibrary(GlobalTextures);
+            Libraries.SpriteLibrary.AddLibrary(GlobalSprites);
 
-            GlobalFonts = new Library.FontLibrary();
-            Library.FontLibrary.AddLibrary(GlobalFonts);
+            GlobalFonts = new Libraries.FontLibrary();
+            Libraries.FontLibrary.AddLibrary(GlobalFonts);
 
-            KeyHandler = new KeyHandler(Path.Combine(SaveDirectory, "keyconfig.xml"));
+            InputManager = new Input.InputManager(Path.Combine(SaveDirectory, "inputconfig.xml"));
 
-            TextHandler = new TextHandler();
+            TextHandler = new Input.TextHandler();
         }
 
         public static ContentManager NewContentManager()
