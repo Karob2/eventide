@@ -50,6 +50,7 @@
     <Compile Include="Util\Console.cs" />
     <Compile Include="Util\Delegate.cs" />
     <Compile Include="Util\Pathfinder.cs" />
+    <Compile Include="Util\TextContainer.cs" />
     <Compile Include="Util\XmlHelper.cs" />
     <Compile Include="Libraries\Font.cs" />
     <Compile Include="Libraries\FontLibrary.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="GlobalServices.cs" />
+    <Compile Include="Systems\TextBoxState.cs" />
     <Compile Include="Systems\TextState.cs" />
   </ItemGroup>
   <ItemGroup>

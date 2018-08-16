@@ -64,7 +64,7 @@ namespace Eventide4.Scenes
 
             methodQueue = new List<MethodQueueItem>();
 
-            GlobalServices.TextHandler.Stop();
+            //GlobalServices.TextHandler.Stop();
         }
 
         public static void Initialize()

@@ -33,7 +33,7 @@ namespace Eventide4.Libraries
             this.spriteFont.DefaultCharacter = '?';
         }
 
-        public void Render(string message, float x, float y, Color color, float scale, float depth = 1f)
+        public void Render(string message, float x, float y, Color color, float scale = 1f, float depth = 1f)
         {
             GlobalServices.SpriteBatch.DrawString(spriteFont, message, new Vector2(x, y),
                 color, 0f, new Vector2(0f, 0f), Scale * scale, SpriteEffects.None, depth);

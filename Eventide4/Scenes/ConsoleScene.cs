@@ -15,11 +15,12 @@ namespace Eventide4.Scenes
         Systems.Entity inputText;
         Systems.Entity logText;
         StringBuilder inputMessage;
+        Systems.Entity logBox;
 
         Util.Console console;
 
         SpriteFont font;
-        int areaX, areaY, areaWidth, areaHeight, maxLines;
+        int areaX, areaY, areaWidth, areaHeight, areaPadding, maxLines;
 
         public ConsoleScene() : base(false)
         {
@@ -28,16 +29,18 @@ namespace Eventide4.Scenes
             logText = new Systems.Entity(this, entityList).AddText("system:default", "", 5f, 25f, Color.White, 1f);
             inputText = new Systems.Entity(this, entityList).AddText("system:default", "", 5f, 205f, Color.Cyan, 1f);
             inputMessage = new StringBuilder("");
+            logBox = new Systems.Entity(this, entityList).AddTextBox("system:default", 0f, 0f, 100f, 100f, 5f, Color.White, "");
 
             // TODO: This is such a messy pile of public properties:
             font = logText.TextState.Font.SpriteFont;
+
 
             SetupVisuals();
 
             console = new Util.Console();
             UpdateLog();
 
-            GlobalServices.TextHandler.Start();
+            //GlobalServices.TextHandler.Start();
         }
 
         void SetupVisuals()
@@ -48,21 +51,24 @@ namespace Eventide4.Scenes
             areaHeight = gameHeight * 4 / 6;
             areaX = gameWidth / 6;
             areaY = gameHeight / 6;
+            areaPadding = 5;
 
             int textHeight = font.LineSpacing;
             maxLines = areaHeight / textHeight;
 
-            logText.TextState.X = (float)(areaX + 5);
-            logText.TextState.Y = (float)(areaY + 5);
-            inputText.TextState.X = (float)(areaX + 5);
-            inputText.TextState.Y = (float)(areaY + areaHeight - textHeight - 5);
+            logText.TextState.X = (float)(areaX + areaPadding);
+            logText.TextState.Y = (float)(areaY + areaPadding);
+            inputText.TextState.X = (float)(areaX + areaPadding);
+            inputText.TextState.Y = (float)(areaY + areaHeight - textHeight - areaPadding);
+            logBox.TextBoxState.Resize(areaX, areaY, areaWidth, areaHeight - textHeight, areaPadding);
         }
 
         public override void UpdateControl()
         {
-            GlobalServices.TextHandler.DumpBuffer();
+            //GlobalServices.TextHandler.DumpBuffer();
             base.UpdateControl();
 
+            /*
             foreach (char c in GlobalServices.TextHandler.TextBuffer)
             {
                 if (c == '\n' || c == '\r')
@@ -85,17 +91,19 @@ namespace Eventide4.Scenes
                     if (inputMessage.Length > 0)
                         inputMessage.Remove(inputMessage.Length - 1, 1);
                 }
-                /*
+                
                 else
                 {
                     // To figure out which keys are being registered and what their codes are.
                     inputMessage.Append("(" + String.Format("0x{0:X}", Convert.ToByte(c)) + ")");
                 }
-                */
+                
                 //inputMessage.Append("(" + String.Format("0x{0:X}", Convert.ToByte(c)) + ")");
             }
             inputText.SetText(inputMessage.ToString());
+            */
 
+            /*
             if (!(Keyboard.GetState().IsKeyDown(Keys.LeftControl) || Keyboard.GetState().IsKeyDown(Keys.RightControl)))
             {
                 if (GlobalServices.InputManager.JustPressed(Input.GameCommand.ConsoleConfirm))
@@ -115,6 +123,7 @@ namespace Eventide4.Scenes
                     inputMessage.Clear();
                 }
             }
+            */
         }
 
         public override void Render()
