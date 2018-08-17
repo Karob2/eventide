@@ -1,0 +1,75 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin system/sprites/default.xml
+/copy:system/sprites/default.xml
+
+#begin system/fonts/default.xml
+/copy:system/fonts/default.xml
+
+#begin system/textures/square.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:system/textures/square.png
+
+#begin system/textures/ball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:system/textures/ball.png
+
+#begin core/sprites/ball.xml
+/copy:core/sprites/ball.xml
+
+#begin core/textures/ball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:core/textures/ball.png
+
+#begin core/fonts/Courier_Prime_Sans_Bold_16.xnb
+/copy:core/fonts/Courier_Prime_Sans_Bold_16.xnb
+
+#begin core/fonts/default.xml
+/copy:core/fonts/default.xml
+
+#begin system/fonts/Pixellari_16px.xnb
+/copy:system/fonts/Pixellari_16px.xnb
+
+#begin core/fonts/Courier Prime Sans license.txt
+/copy:core/fonts/Courier Prime Sans license.txt
+
+#begin system/fonts/Pixellari license.txt
+/copy:system/fonts/Pixellari license.txt
+
