@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventide", "Eventide\Eventide.csproj", "{30E30B8B-2C2C-4BD6-96D2-CC8AC10F5A20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventide Old", "Eventide Old\Eventide Old.csproj", "{30E30B8B-2C2C-4BD6-96D2-CC8AC10F5A20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{B103D915-1F82-46D3-982C-E305304ECA28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventide", "Eventide\Eventide.csproj", "{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Demos\Sandbox\Sandbox.csproj", "{ED3FB5A0-024B-4321-9296-FC7674E0A63F}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DemoSharedResources", "Demos\DemoSharedResources\DemoSharedResources.shproj", "{413393A4-1198-4F8E-AC8E-B9FC24844A88}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Demos\DemoSharedResources\DemoSharedResources.projitems*{413393a4-1198-4f8e-ac8e-b9fc24844a88}*SharedItemsImports = 13
+		Demos\DemoSharedResources\DemoSharedResources.projitems*{ed3fb5a0-024b-4321-9296-fc7674e0a63f}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,9 +27,21 @@ Global
 		{30E30B8B-2C2C-4BD6-96D2-CC8AC10F5A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30E30B8B-2C2C-4BD6-96D2-CC8AC10F5A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30E30B8B-2C2C-4BD6-96D2-CC8AC10F5A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED3FB5A0-024B-4321-9296-FC7674E0A63F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED3FB5A0-024B-4321-9296-FC7674E0A63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED3FB5A0-024B-4321-9296-FC7674E0A63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED3FB5A0-024B-4321-9296-FC7674E0A63F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ED3FB5A0-024B-4321-9296-FC7674E0A63F} = {B103D915-1F82-46D3-982C-E305304ECA28}
+		{413393A4-1198-4F8E-AC8E-B9FC24844A88} = {B103D915-1F82-46D3-982C-E305304ECA28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D6C653D-C84D-46F2-A9B5-C6D6AAACCB26}

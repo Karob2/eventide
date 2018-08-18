@@ -69,7 +69,7 @@ namespace Eventide.Scenes
 
         public static void Initialize()
         {
-            activeScene = new List<Scene>();
+            activeScene = new List<Scene> { new MainMenu() };
         }
 
         public static void ChangeScene(Scene scene)

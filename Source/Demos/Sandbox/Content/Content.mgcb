@@ -1,0 +1,38 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin core/sprites/ball.xml
+/copy:core/sprites/ball.xml
+
+#begin core/textures/ball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:core/textures/ball.png
+
+#begin core/fonts/Courier_Prime_Sans_Bold_16.xnb
+/copy:core/fonts/Courier_Prime_Sans_Bold_16.xnb
+
+#begin core/fonts/default.xml
+/copy:core/fonts/default.xml
+
+#begin core/fonts/Courier Prime Sans license.txt
+/copy:core/fonts/Courier Prime Sans license.txt
