@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{B103D915-1F82-46D3-982C-E305304ECA28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventide", "Eventide\Eventide.csproj", "{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eventide", "Eventide\Eventide.csproj", "{EC95D4F2-AAAB-4A62-A1E2-43B6917146EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Demos\Sandbox\Sandbox.csproj", "{ED3FB5A0-024B-4321-9296-FC7674E0A63F}"
 EndProject
